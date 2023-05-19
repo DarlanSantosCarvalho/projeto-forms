@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
 import "./forms.css"
+import Axios from "axios"
 
 function Forms() {
 
@@ -8,6 +9,11 @@ function Forms() {
 
     const onSubmit = (e) => {
         console.log(e)
+        Axios.post("https://localhost:3000",{
+            inspetor: e.inspetor
+        }).then((response) => {
+            console.log(response)
+        })
     }
 
     return (
