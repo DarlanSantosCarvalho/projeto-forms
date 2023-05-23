@@ -8,22 +8,49 @@ function Forms() {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (e) => {
-        console.log(e)
-        Axios.post("https://localhost:3000",{
-            inspetor: e.inspetor
-        }).then((response) => {
-            console.log(response)
+        console.log(e);
+        Axios.post("http://localhost:3000/", {
+            tecnico: e.tecnico,
+            date: e.date,
+            setor: e.setor,
+            timeStart: e.timeStart,
+            timeEnd: e.timeEnd,
+            equip1_1: e.eqp1conformity1,
+            equip1_2: e.eqp1conformity2,
+            equip1_3: e.eqp1conformity3,
+            equip1_4: e.eqp1conformity4,
+            equip1_5: e.eqp1conformity5,
+            equip1_6: e.eqp1conformity6,
+            equip2_1: e.eqp2conformity1,
+            equip2_2: e.eqp2conformity2,
+            equip2_3: e.eqp2conformity3,
+            equip2_4: e.eqp2conformity4,
+            equip2_5: e.eqp2conformity5,
+            equip2_6: e.eqp2conformity6
         })
-    }
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="main">
-                <div className="nome">
-                    <label>Nome:</label>
-                    <input type="text" {...register('name')} id="name" placeholder="Digite seu nome" />
-                    <label>Sobrenome:</label>
-                    <input type="text" {...register('surname')} id="surname" placeholder="Digite seu sobrenome" />
+                <div className="tecnico">
+                    <label for="Técnico executor: ">Técnico executor:</label>
+                    <select id="tecnico" {...register('tecnico')}>
+                        <option value="NA">Escolher técnico</option>
+                        <option value="Robson Silva">Robson Silva</option>
+                        <option value="Marcele Fonseca">Marcele Fonseca</option>
+                        <option value="Vitor Torres">Vitor Torres</option>
+                        <option value="Monique Coutinho">Monique Coutinho</option>
+                        <option value="Igor Giovani">Igor Giovani</option>
+                        <option value="EngClin">Engenharia Clínica</option>
+                    </select>
                 </div>
                 <div className="setor">
                     <label for="setor">Setor:</label>
@@ -42,18 +69,6 @@ function Forms() {
                     <input type="time"{...register('timeStart')} id="timeStart" />
                     <label>Horário de saída:</label>
                     <input type="time" {...register('timeEnd')} id="timeEnd" />
-                </div>
-                <div className="tecnico">
-                    <label for="Técnico executor: ">Técnico executor:</label>
-                    <select id="tecnico" {...register('tecnico')}>
-                        <option value="NA">Escolher técnico</option>
-                        <option value="Robson Silva">Robson Silva</option>
-                        <option value="Marcele Fonseca">Marcele Fonseca</option>
-                        <option value="Vitor Torres">Vitor Torres</option>
-                        <option value="Monique Coutinho">Monique Coutinho</option>
-                        <option value="Igor Giovani">Igor Giovani</option>
-                        <option value="EngClin">Engenharia Clínica</option>
-                    </select>
                 </div>
             </div>
 
