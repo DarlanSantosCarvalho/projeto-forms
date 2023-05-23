@@ -19,12 +19,12 @@ app.post("/", (req, res) => {
     const setor = req.body.setor;
     const timeStart = req.body.timeStart;
     const timeEnd = req.body.timeEnd;
-    const equip1_1 = req.body.eqp1conformity1;
-    const equip1_2 = req.body.eqp1conformity2;
-    const equip1_3 = req.body.eqp1conformity3;
-    const equip1_4 = req.body.eqp1conformity4;
-    const equip1_5 = req.body.eqp1conformity5;
-    const equip1_6 = req.body.eqp1conformity6;
+    const equip1_1 = req.body.equip1_1;
+    const equip1_2 = req.body.equip1_2;
+    const equip1_3 = req.body.equip1_3;
+    const equip1_4 = req.body.equip1_4;
+    const equip1_5 = req.body.equip1_5;
+    const equip1_6 = req.body.equip1_6;
 
 
     db.query("SELECT * FROM usuarios WHERE data = ?", [date], (err, result) => {
@@ -34,7 +34,7 @@ app.post("/", (req, res) => {
         if (result.length === 0) {
             db.query("INSERT INTO usuarios (inspetor, data, setor, timeStart, timeEnd, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [inspetor, date, setor, timeStart, timeEnd, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6],
-                (err, result) => {
+                (err) => {
                     if (err) {
                         res.send(err);
                     } else {

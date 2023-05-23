@@ -15,12 +15,12 @@ function Forms() {
             setor: e.setor,
             timeStart: e.timeStart,
             timeEnd: e.timeEnd,
-            equip1_1: e.eqp1conformity1,
-            equip1_2: e.eqp1conformity2,
-            equip1_3: e.eqp1conformity3,
-            equip1_4: e.eqp1conformity4,
-            equip1_5: e.eqp1conformity5,
-            equip1_6: e.eqp1conformity6,
+            equip1_1: e.equip1_1,
+            equip1_2: e.equip1_2,
+            equip1_3: e.equip1_3,
+            equip1_4: e.equip1_4,
+            equip1_5: e.equip1_5,
+            equip1_6: e.equip1_6,
             equip2_1: e.eqp2conformity1,
             equip2_2: e.eqp2conformity2,
             equip2_3: e.eqp2conformity3,
@@ -78,39 +78,39 @@ function Forms() {
 
                 <div className="equipment-1">
                     <p>VERIFICAR INTEGRIDADE DA BRAÇADEIRA E EXTENSOR DE PNI</p>
-                    <input type="radio" {...register('eqp1conformity-1')} value="Conforme" id="conformity" />
+                    <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" />
                     <label for="integridadePNI">Conforme</label>
-                    <input type="radio" {...register('eqp1conformity-1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_1')} value="Inconforme" id="nonconformity" />
                     <label for="integridadePNI">Não conforme</label>
 
                     <p>VERIFICAR INTEGRIDADE DO CABO DE ECG</p>
-                    <input type="radio" {...register('eqp1conformity-2')} value="Conforme" id="conformity" />
+                    <input type="radio" {...register('equip1_2')} value="Conforme" id="conformity" />
                     <label for="integridadePNI">Conforme</label>
-                    <input type="radio" {...register('eqp1conformity-2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_2')} value="Inconforme" id="nonconformity" />
                     <label for="integridadePNI">Não conforme</label>
 
                     <p>VERIFICAR INTEGRIDADE DO SENSOR DE OXIMETRIA E PRÉ CABO (SE EXISTIR) </p>
-                    <input type="radio" {...register('eqp1conformity-3')} value="Conforme" id="conformity" />
+                    <input type="radio" {...register('equip1_3')} value="Conforme" id="conformity" />
                     <label for="integridadePNI">Conforme</label>
-                    <input type="radio" {...register('eqp1conformity-3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_3')} value="Inconforme" id="nonconformity" />
                     <label for="integridadePNI">Não conforme</label>
 
                     <p>VERIFICAR PRESENÇA DE PARÂMETRO DOS MÓDULOS EXTERNOS NA TELA</p>
-                    <input type="radio" {...register('eqp1conformity-4')} value="Conforme" id="conformity" />
+                    <input type="radio" {...register('equip1_4')} value="Conforme" id="conformity" />
                     <label for="integridadePNI">Conforme</label>
-                    <input type="radio" {...register('eqp1conformity-4')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_4')} value="Inconforme" id="nonconformity" />
                     <label for="integridadePNI">Não conforme</label>
 
                     <p>VERIFICAR FUNCIONAMENTO DE CABO PAM COM SIMULADOR</p>
-                    <input type="radio" {...register('eqp1conformity-5')} value="Conforme" id="conformity" />
+                    <input type="radio" {...register('equip1_5')} value="Conforme" id="conformity" />
                     <label for="integridadePNI">Conforme</label>
-                    <input type="radio" {...register('eqp1conformity-5')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_5')} value="Inconforme" id="nonconformity" />
                     <label for="integridadePNI">Não conforme</label>
 
                     <p>VERIFICAR SE OS MONITORES ESTÃO LIGADOS NA REDE ELÉTRICA</p>
-                    <input type="radio" {...register('eqp1conformity-6')} value="Conforme" id="conformity" />
+                    <input type="radio" {...register('equip1_6')} value="Conforme" id="conformity" />
                     <label for="integridadePNI">Conforme</label>
-                    <input type="radio" {...register('eqp1conformity-6')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_6')} value="Inconforme" id="nonconformity" />
                     <label for="integridadePNI">Não conforme</label>
                 </div>
 
