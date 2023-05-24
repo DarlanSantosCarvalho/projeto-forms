@@ -14,7 +14,8 @@ app.use(express.json());
 app.use(cors())
 
 app.post("/", (req, res) => {
-    const inspetor = req.body.tecnico;
+    const inspetorUm = req.body.tecnicoUm;
+    const inspetorDois = req.body.tecnicoDois
     const date = req.body.date;
     const setor = req.body.setor;
     const timeStart = req.body.timeStart;
@@ -25,6 +26,12 @@ app.post("/", (req, res) => {
     const equip1_4 = req.body.equip1_4;
     const equip1_5 = req.body.equip1_5;
     const equip1_6 = req.body.equip1_6;
+    const equip2_1 = req.body.equip2_1;
+    const equip2_2 = req.body.equip2_2;
+    const equip2_3 = req.body.equip2_3;
+    const equip2_4 = req.body.equip2_4;
+    const equip2_5 = req.body.equip2_5;
+    const equip2_6 = req.body.equip2_6;
 
 
     db.query("SELECT * FROM usuarios WHERE data = ?", [date], (err, result) => {
@@ -32,8 +39,8 @@ app.post("/", (req, res) => {
             res.send(err);
         }
         if (result.length === 0) {
-            db.query("INSERT INTO usuarios (inspetor, data, setor, timeStart, timeEnd, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                [inspetor, date, setor, timeStart, timeEnd, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6],
+            db.query("INSERT INTO usuarios (inspetor, data, setor, timeStart, timeEnd, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6, equip2_1, equip2_2, equip2_3, equip2_4, equip2_5, equip2_6, inspetor2 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                [inspetorUm, date, setor, timeStart, timeEnd, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6, equip2_1, equip2_2, equip2_3, equip2_4, equip2_5, equip2_6, inspetorDois],
                 (err) => {
                     if (err) {
                         res.send(err);

@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins";
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    margin: 0 auto;
+}
+
+.main {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.tecnicoUm label,
+.tecnicoDois label,
+.setor label,
+.tempo label{
+    margin: 10px;
+}
+
+.equipments {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+h2{
+    font-family: "Poppins";
+    font-weight: 700;
+    color: red;
+    text-decoration: underline;
+}
+
+fieldset{
+    padding: 20px;
+}
+
+.equipment-1,
+.equipment-2 {
+    margin: 10px;
+    padding: 10px;
+}
+
+.equipment-1 p,
+.equipment-2 p {
+    padding: 15px;
+    margin: 10px;
+    font-family: "Poppins";
+    font-weight: 600;
+}
+
+.equipments label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins";
+    font-weight: 300;
+}
+
+
+button{
+    padding: 16px;
+    font-weight: 700;
+    border: none;
+    background-color: rgb(0, 255, 13);
+    border-radius: 18px;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+button:hover{
+    padding: 18px;
+    font-size: 15px;
+    transition: 0.8s;
+}
