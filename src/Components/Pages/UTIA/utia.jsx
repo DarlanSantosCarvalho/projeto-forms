@@ -12,6 +12,7 @@ function UTIA() {
         Axios.post("http://localhost:3000/", {
             tecnicoUm: e.tecnicoUm,
             tecnicoDois: e.tecnicoDois,
+            setor: e.setor,
             date: e.date,
             timeStart: e.timeStart,
             timeEnd: e.timeEnd,
@@ -67,6 +68,12 @@ function UTIA() {
         <form onSubmit={handleSubmit(onSubmit)}>
 
 
+            <div className='logo'>
+                <a href="/">
+                    <img src="src/assets/images/cropped-logo-martagao.png" alt="Logo do Hospital Martagão Gesteira" />
+                </a>
+            </div>
+
             <div className="main">
 
                 <div className="tecnicoUm">
@@ -86,12 +93,19 @@ function UTIA() {
                     <label for="Técnico executor: ">Técnico executor 2:</label>
                     <select id="tecnicoDois" {...register('tecnicoDois')} required>
                         <option value="NA">Escolher técnico</option>
-                        <option value="Robson Silva">Robson Silva</option>
+
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
                         <option value="Monique Coutinho">Monique Coutinho</option>
                         <option value="Igor Giovani">Igor Giovani</option>
                         <option value="EngClin">Engenharia Clínica</option>
+                    </select>
+                </div>
+
+                <div className="setor">
+                    <label for="setor">Setor:</label>
+                    <select id="setor" {...register('setor')}>
+                        <option value="UTI Pediatria A">UTI Pediatria A</option>
                     </select>
                 </div>
 
@@ -388,7 +402,7 @@ function UTIA() {
                 </div>
 
                 <h2>OBSERVAÇÕES</h2>
-                <textarea {...register('obs')}id="obs" cols="30" rows="10"></textarea>
+                <textarea {...register('obs')} id="obs" cols="30" rows="10"></textarea>
 
                 <label htmlFor="file">Anexe Arquivo</label>
                 <input type="file" />

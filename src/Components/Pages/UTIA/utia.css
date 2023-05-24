@@ -85,6 +85,10 @@ button{
     cursor: pointer;
 }
 
+select#setor{
+    border: none;
+}
+
 button:hover{
     padding: 18px;
     font-size: 15px;

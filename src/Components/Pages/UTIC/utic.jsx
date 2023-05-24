@@ -1,9 +1,9 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
-import "./utib.css"
+import "./utic.css"
 import Axios from "axios"
 
-function UTIB() {
+function UTIC() {
 
     const { register, handleSubmit } = useForm();
 
@@ -37,18 +37,6 @@ function UTIB() {
             equip5_1: e.equip5_1,
             equip5_2: e.equip5_2,
             equip5_3: e.equip5_3, //BERÇO AQUECIDO
-            equip6_1: e.equip6_1,
-            equip6_2: e.equip6_2,
-            equip6_3: e.equip6_3,
-            equip6_4: e.equip6_4,
-            equip6_5: e.equip6_5, //BALANÇA
-            equip7_1: e.quip7_1,
-            equip7_2: e.quip7_2,
-            equip7_3: e.quip7_3,
-            equip7_4: e.quip7_4, //ELETROCARDIÓGRAFO
-            equip8_1: e.quip8_1,
-            equip8_2: e.quip8_2,
-            equip8_3: e.quip8_3, //SALA DE EQUIPAMENTOS
             equip9_1: e.quip9_1,
             equip9_2: e.quip9_2, //TAG's E ETIQUETAS
             equip10_1: e.quip10_1,
@@ -73,14 +61,12 @@ function UTIB() {
                 </a>
             </div>
 
-
             <div className="main">
 
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
                     <select id="tecnicoUm" {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
-                        <option value="Robson Silva">Robson Silva</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
                         <option value="Monique Coutinho">Monique Coutinho</option>
@@ -93,6 +79,7 @@ function UTIB() {
                     <label for="Técnico executor: ">Técnico executor 2:</label>
                     <select id="tecnicoDois" {...register('tecnicoDois')} required>
                         <option value="NA">Escolher técnico</option>
+                        <option value="Robson Silva">Robson Silva</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
                         <option value="Monique Coutinho">Monique Coutinho</option>
@@ -104,7 +91,7 @@ function UTIB() {
                 <div className="setor">
                     <label for="setor">Setor:</label>
                     <select id="setor" {...register('setor')}>
-                        <option value="UTI Pediatria B">UTI Pediatria B</option>
+                        <option value="UTI Pediatria C">UTI Pediatria C</option>
                     </select>
                 </div>
 
@@ -270,98 +257,7 @@ function UTIB() {
                     </fieldset>
                 </div>
 
-                <h2>BALANÇA</h2>
 
-                <div className="equipment-1">
-
-                    <fieldset>
-                        <p>VERIFICAR NIVELAMENTO</p>
-                        <input type="radio" {...register('equip6_1')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip6_1')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-
-                        <p>VERIFICAR INTEGRIDADE DA CARCAÇA DA BALANÇA</p>
-                        <input type="radio" {...register('equip6_2')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip6_2')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-
-                        <p>VERIFICAR INTEGRIDADE DA FONTE DE ALIMENTAÇÃO</p>
-                        <input type="radio" {...register('equip6_3')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip6_3')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-
-                        <p>VERIFICAR SE AS INFORMAÇÕES ESTÃO LEGÍVEIS</p>
-                        <input type="radio" {...register('equip6_4')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip6_4')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-
-                        <p>VERIFICAR INTEGRIDADE DO DISPLAY</p>
-                        <input type="radio" {...register('equip6_5')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip6_5')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-                    </fieldset>
-                </div>
-
-                <h2>ELETROCARDIÓGRAFO</h2>
-
-                <div className="equipment-1">
-
-                    <fieldset>
-                        <p>VERIFICAR SE EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
-                        <input type="radio" {...register('equip7_1')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip7_1')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-
-                        <p>VERIFICAR SE AS INFORMAÇÕES ESTÃO LEGÍVEIS</p>
-                        <input type="radio" {...register('equip7_2')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip7_2')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-
-                        <p>VERIFICAR INTEGRIDADE DO ROLETE DO PAPEL</p>
-                        <input type="radio" {...register('equip7_3')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip7_3')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-
-                        <p>VERIFICAR CONDIÇÕES DA TAMPA DO COMPARTIMENTO DO PAPEL</p>
-                        <input type="radio" {...register('equip7_4')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip7_4')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-                    </fieldset>
-                </div>
-
-                <h2>SALA DE EQUIPAMENTOS/ CARRINHO DE EMERGÊNCIA</h2>
-
-                <div className="equipment-1">
-
-                    <fieldset>
-                        <p>VERIFICAR INTEGRIDADE DOS EQUIPAMENTOS QUE ENCONTRAM-SE NA SALA</p>
-                        <input type="radio" {...register('equip8_1')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip8_1')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-
-                        <p>REALIZAR TESTE FUNCIONAL DOS EQUIPAMENTOS</p>
-                        <input type="radio" {...register('equip8_2')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip8_2')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-
-                        <p>REALIZAR TESTE FUNCIONAL EM TODOS OS LARINGOSCÓPIOS</p>
-                        <input type="radio" {...register('equip8_3')} value="Conforme" id="conformity" />
-                        <label for="">Conforme</label>
-                        <input type="radio" {...register('equip8_3')} value="Inconforme" id="nonconformity" />
-                        <label for="">Não conforme</label>
-                    </fieldset>
-                </div>
 
                 <h2>VERIFICAÇÃO DE TAG's E ETIQUETAS DE PREVENTIVA</h2>
                 <div className="equipment-1">
@@ -420,4 +316,4 @@ function UTIB() {
     )
 }
 
-export default UTIB
+export default UTIC
