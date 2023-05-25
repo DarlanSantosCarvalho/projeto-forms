@@ -9,7 +9,7 @@ function UTIB() {
 
     const onSubmit = (e) => {
         console.log(e);
-        Axios.post("http://localhost:3000/", {
+        Axios.post("http://localhost:3000/UTIB", {
             tecnicoUm: e.tecnicoUm,
             tecnicoDois: e.tecnicoDois,
             setor: e.setor,
@@ -42,17 +42,17 @@ function UTIB() {
             equip6_3: e.equip6_3,
             equip6_4: e.equip6_4,
             equip6_5: e.equip6_5, //BALANÇA
-            equip7_1: e.quip7_1,
-            equip7_2: e.quip7_2,
-            equip7_3: e.quip7_3,
-            equip7_4: e.quip7_4, //ELETROCARDIÓGRAFO
-            equip8_1: e.quip8_1,
-            equip8_2: e.quip8_2,
-            equip8_3: e.quip8_3, //SALA DE EQUIPAMENTOS
-            equip9_1: e.quip9_1,
-            equip9_2: e.quip9_2, //TAG's E ETIQUETAS
-            equip10_1: e.quip10_1,
-            equip10_2: e.quip10_2 //BOMBA DE INFUSÃO E SERINGA
+            equip7_1: e.equip7_1,
+            equip7_2: e.equip7_2,
+            equip7_3: e.equip7_3,
+            equip7_4: e.equip7_4, //ELETROCARDIÓGRAFO
+            equip8_1: e.equip8_1,
+            equip8_2: e.equip8_2,
+            equip8_3: e.equip8_3, //SALA DE EQUIPAMENTOS
+            equip9_1: e.equip9_1,
+            equip9_2: e.equip9_2, //TAG's E ETIQUETAS
+            equip10_1: e.equip10_1,
+            equip10_2: e.equip10_2 //BOMBA DE INFUSÃO E SERINGA
 
         })
             .then((response) => {

@@ -9,7 +9,7 @@ function UTIA() {
 
     const onSubmit = (e) => {
         console.log(e);
-        Axios.post("http://localhost:3000/", {
+        Axios.post("http://localhost:3000/UTIA", {
             tecnicoUm: e.tecnicoUm,
             tecnicoDois: e.tecnicoDois,
             setor: e.setor,
@@ -42,17 +42,17 @@ function UTIA() {
             equip6_3: e.equip6_3,
             equip6_4: e.equip6_4,
             equip6_5: e.equip6_5, //BALANÇA
-            equip7_1: e.quip7_1,
-            equip7_2: e.quip7_2,
-            equip7_3: e.quip7_3,
-            equip7_4: e.quip7_4, //ELETROCARDIÓGRAFO
-            equip8_1: e.quip8_1,
-            equip8_2: e.quip8_2,
-            equip8_3: e.quip8_3, //SALA DE EQUIPAMENTOS
-            equip9_1: e.quip9_1,
-            equip9_2: e.quip9_2, //TAG's E ETIQUETAS
-            equip10_1: e.quip10_1,
-            equip10_2: e.quip10_2 //BOMBA DE INFUSÃO E SERINGA
+            equip7_1: e.equip7_1,
+            equip7_2: e.equip7_2,
+            equip7_3: e.equip7_3,
+            equip7_4: e.equip7_4, //ELETROCARDIÓGRAFO
+            equip8_1: e.equip8_1,
+            equip8_2: e.equip8_2,
+            equip8_3: e.equip8_3, //SALA DE EQUIPAMENTOS
+            equip9_1: e.equip9_1,
+            equip9_2: e.equip9_2, //TAG's E ETIQUETAS
+            equip10_1: e.equip10_1,
+            equip10_2: e.equip10_2 //BOMBA DE INFUSÃO E SERINGA
 
         })
             .then((response) => {
@@ -80,7 +80,6 @@ function UTIA() {
                     <label for="Técnico executor: ">Técnico executor 1:</label>
                     <select id="tecnicoUm" {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
-                        <option value="Robson Silva">Robson Silva</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
                         <option value="Monique Coutinho">Monique Coutinho</option>
@@ -121,7 +120,8 @@ function UTIA() {
 
             <section className="equipments">
 
-                <h2>CENTRAL DE MONITORIZAÇÃO</h2>
+                <h2>CENTRAL DE MONITORIZAÇÃO <br />
+                    EQUIPAMENTO 1</h2>
 
                 <div className="equipment-1">
                     <fieldset>
@@ -146,7 +146,8 @@ function UTIA() {
                 </div>
 
 
-                <h2>MONITOR MULTIPARAMETRO/TRANSPORTE</h2>
+                <h2>MONITOR MULTIPARAMETRO/TRANSPORTE <br />
+                    EQUIPAMENTO 2</h2>
 
                 <div className="equipment-1">
 
@@ -184,7 +185,8 @@ function UTIA() {
                 </div>
 
 
-                <h2>VENTILADOR PULMONAR/TRANSPORTE/BACKUP</h2>
+                <h2>VENTILADOR PULMONAR/TRANSPORTE/BACKUP <br />
+                    EQUIPAMENTO 3</h2>
 
                 <div className="equipment-1">
 
@@ -215,7 +217,8 @@ function UTIA() {
                     </fieldset>
                 </div>
 
-                <h2>CARDIOVERSOR</h2>
+                <h2>CARDIOVERSOR <br />
+                    EQUIPAMENTO 4</h2>
 
                 <div className="equipment-1">
 
@@ -246,7 +249,8 @@ function UTIA() {
                     </fieldset>
                 </div>
 
-                <h2>BERÇO AQUECIDO</h2>
+                <h2>BERÇO AQUECIDO <br />
+                    EQUIPAMENTO 5</h2>
 
                 <div className="equipment-1">
 
@@ -271,7 +275,8 @@ function UTIA() {
                     </fieldset>
                 </div>
 
-                <h2>BALANÇA</h2>
+                <h2>BALANÇA <br />
+                    EQUIPAMENTO 6</h2>
 
                 <div className="equipment-1">
 
@@ -308,7 +313,8 @@ function UTIA() {
                     </fieldset>
                 </div>
 
-                <h2>ELETROCARDIÓGRAFO</h2>
+                <h2>ELETROCARDIÓGRAFO <br />
+                    EQUIPAMENTO 7</h2>
 
                 <div className="equipment-1">
 
@@ -339,7 +345,8 @@ function UTIA() {
                     </fieldset>
                 </div>
 
-                <h2>SALA DE EQUIPAMENTOS/ CARRINHO DE EMERGÊNCIA</h2>
+                <h2>SALA DE EQUIPAMENTOS/ CARRINHO DE EMERGÊNCIA <br />
+                    EQUIPAMENTO 8</h2>
 
                 <div className="equipment-1">
 
@@ -364,7 +371,8 @@ function UTIA() {
                     </fieldset>
                 </div>
 
-                <h2>VERIFICAÇÃO DE TAG's E ETIQUETAS DE PREVENTIVA</h2>
+                <h2>VERIFICAÇÃO DE TAG's E ETIQUETAS DE PREVENTIVA <br />
+                    EQUIPAMENTO 9</h2>
                 <div className="equipment-1">
 
                     <fieldset>
@@ -382,7 +390,8 @@ function UTIA() {
                     </fieldset>
                 </div>
 
-                <h2>BOMBA DE INFUSÃO E SERINGA</h2>
+                <h2>BOMBA DE INFUSÃO E SERINGA <br />
+                    EQUIPAMENTO 10</h2>
 
                 <div className="equipment-1">
 
