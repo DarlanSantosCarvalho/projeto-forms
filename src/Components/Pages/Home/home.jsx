@@ -30,7 +30,7 @@ function Home() {
                 </h2>
 
                 <h2>
-                    <a href="/CC">CENTRO CIRÚRGICO</a>
+                    <a href="/CTC">CENTRO CIRÚRGICO</a>
                 </h2>
             </div>
         </div>

@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import UTIC from "./Components/Pages/UTIC/utic"
 import UTIB from "./Components/Pages/UTIB/utib"
 import UTIA from "./Components/Pages/UTIA/utia"
+import UTINEO from "./Components/Pages/UTINEO/utineo"
+import CTC from "./Components/Pages/CTC/ctc"
 import Home from "./Components/Pages/Home/home"
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
         <Route path="/UTIA" element={<UTIA/>}/>
         <Route path="/UTIB" element={<UTIB/>}/>
         <Route path="/UTIC" element={<UTIC/>}/>
+        <Route path="/UTINEO" element={<UTINEO/>}/>
+        <Route path="/CTC" element={<CTC/>}/>
       </Routes>
     </Router>
   )
