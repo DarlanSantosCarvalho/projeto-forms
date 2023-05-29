@@ -1,3 +1,17 @@
 .hidden{
     display: none;
 }
+
+.salas{
+    margin: 10px;
+    padding: 20px;
+}
+
+.salas input{
+    margin: 10px;
+}
+
+.salas h3{
+    text-align: center;
+    margin-bottom: 40px;
+}

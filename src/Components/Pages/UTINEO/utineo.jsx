@@ -5,6 +5,38 @@ import Axios from "axios"
 
 function UTINEO() {
 
+    function handleClickCompareTime() {
+        const tempoInicio = document.getElementById('timeStart').value
+        const tempoFim = document.getElementById('timeEnd').value
+        const botao = document.getElementById('botao')
+
+        if (tempoFim > tempoInicio) {
+            console.log('Tudo certo')
+            botao.style.pointerEvents = 'all'
+        } else {
+            window.alert('O tempo final não pode ser menor ou igual ao tempo de início')
+            botao.style.pointerEvents = 'none'
+        }
+    }
+
+    function handleClickCompareTecnico() {
+        const inspetorUm = document.getElementById('tecnicoUm').value;
+        const inspetorDois = document.getElementById('tecnicoDois').value;
+        const botao = document.getElementById('botao');
+
+        if (inspetorUm != inspetorDois) {
+            console.log('Tudo certo');
+            botao.style.pointerEvents = 'all';
+        } else if (inspetorUm == "NA" || inspetorDois == "NA") {
+            window.alert('Selecione algum técnico');
+            botao.style.pointerEvents = 'none';
+        } else {
+            window.alert('Não podem ser técnicos iguais');
+            botao.style.pointerEvents = 'none';
+        }
+    }
+
+
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (e) => {
@@ -78,9 +110,8 @@ function UTINEO() {
 
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select id="tecnicoUm" {...register('tecnicoUm')}>
+                    <select onClick={() => handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
-                        <option value="Robson Silva">Robson Silva</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
                         <option value="Monique Coutinho">Monique Coutinho</option>
@@ -91,9 +122,8 @@ function UTINEO() {
 
                 <div className="tecnicoDois">
                     <label for="Técnico executor: ">Técnico executor 2:</label>
-                    <select id="tecnicoDois" {...register('tecnicoDois')} required>
+                    <select onMouseOut={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} required>
                         <option value="NA">Escolher técnico</option>
-
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
                         <option value="Monique Coutinho">Monique Coutinho</option>
@@ -115,7 +145,7 @@ function UTINEO() {
                     <label>Horário de início:</label>
                     <input type="time"{...register('timeStart')} id="timeStart" />
                     <label>Horário de saída:</label>
-                    <input type="time" {...register('timeEnd')} id="timeEnd" />
+                    <input onMouseLeave={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                 </div>
             </div>
 

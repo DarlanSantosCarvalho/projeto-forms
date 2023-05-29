@@ -16,7 +16,7 @@ function App() {
         <Route path="/UTIB" element={<UTIB/>}/>
         <Route path="/UTIC" element={<UTIC/>}/>
         <Route path="/UTINEO" element={<UTINEO/>}/>
-        <Route path="/CTC" element={<CTC/>}/>
+        <Route path="/Centro" element={<CTC/>}/>
       </Routes>
     </Router>
   )
