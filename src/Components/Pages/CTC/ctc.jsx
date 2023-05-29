@@ -467,7 +467,7 @@ function CTC() {
                             <input
                                 type="radio"
                                 {...register('equip8_1')}
-                                value="Conforme"
+                                value="Arco C ZIEHM na sala"
                                 id="positivo"
                                 onClick={handleClickYes}
                             />
@@ -476,7 +476,7 @@ function CTC() {
                             <input
                                 type="radio"
                                 {...register('equip8_1')}
-                                value="Inconforme"
+                                value="Negativo"
                                 id="negativo"
                                 onClick={handleClickNo}
                             />
