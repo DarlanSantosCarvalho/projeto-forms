@@ -313,7 +313,7 @@ app.post("/UTINEO", (req, res) => {
 })
 
 //APP POST /CENTRO
-app.post("/Centro", (req, res) => {
+app.post("/CTC", (req, res) => {
     const inspetorUm = req.body.tecnicoUm;
     const inspetorDois = req.body.tecnicoDois;
     const timeStartSala1 = req.body.timeStartSala1;
@@ -372,6 +372,15 @@ app.post("/Centro", (req, res) => {
     const equip10_3 = req.body.equip10_3;
     const equip11_1 = req.body.equip11_1;
     const equip11_2 = req.body.equip11_2;
+    const equip12_1 = req.body.equip12_1;
+    const equip12_2 = req.body.equip12_2;
+    const equip12_3 = req.body.equip12_3;
+    const equip13_1 = req.body.equip13_1;
+    const equip13_2 = req.body.equip13_2;
+    const equip13_3 = req.body.equip13_3;
+    const equip14_1 = req.body.equip14_1;
+    const equip14_2 = req.body.equip14_2;
+    const equip14_3 = req.body.equip14_3;
 
 
     centroC.query("SELECT * FROM centroc WHERE data = ?", [date], (err, result) => {
@@ -381,8 +390,8 @@ app.post("/Centro", (req, res) => {
         }
 
         if (result.length === 0) {
-            centroC.query("INSERT INTO centroc (inspetor, inspetor2, data, setor, timeStart, timeEnd, timeStartSala1, timeEndSala1, timeStartSala2, timeEndSala2, timeStartSala3, timeEndSala3, timeStartSala4, timeEndSala4, timeStartCrpa, timeEndCrpa, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6, equip2_1, equip2_2, equip2_3, equip2_4, equip2_5, equip2_6, equip2_7, equip2_8, equip3_1, equip3_2, equip3_3, equip3_4, equip4_1, equip4_2, equip4_3, equip4_4, equip5_1, equip5_2, equip5_3, equip6_1, equip6_2, equip6_3, equip7_1, equip7_2, equip8_1, equip8_2, equip9_1, equip9_2, equip9_3, equip10_1, equip10_2, equip10_3, equip11_1, equip11_2,  Obs, Assinatura) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                [inspetorUm, inspetorDois, date, setor, timeStart, timeEnd, timeStartSala1, timeEndSala1, timeStartSala2, timeEndSala2, timeStartSala3, timeEndSala3, timeStartSala4, timeEndSala4, timeStartCrpa, timeEndCrpa, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6, equip2_1, equip2_2, equip2_3, equip2_4, equip2_5, equip2_6, equip2_7, equip2_8, equip3_1, equip3_2, equip3_3, equip3_4, equip4_1, equip4_2, equip4_3, equip4_4, equip5_1, equip5_2, equip5_3, equip6_1, equip6_2, equip6_3, equip7_1, equip7_2, equip8_1, equip8_2, equip9_1, equip9_2, equip9_3, equip10_1, equip10_2, equip10_3, equip11_1, equip11_2, obs, assinatura],
+            centroC.query("INSERT INTO centroc (inspetor, inspetor2, data, setor, timeStart, timeEnd, timeStartSala1, timeEndSala1, timeStartSala2, timeEndSala2, timeStartSala3, timeEndSala3, timeStartSala4, timeEndSala4, timeStartCrpa, timeEndCrpa, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6, equip2_1, equip2_2, equip2_3, equip2_4, equip2_5, equip2_6, equip2_7, equip2_8, equip3_1, equip3_2, equip3_3, equip3_4, equip4_1, equip4_2, equip4_3, equip4_4, equip5_1, equip5_2, equip5_3, equip6_1, equip6_2, equip6_3, equip7_1, equip7_2, equip8_1, equip8_2, equip9_1, equip9_2, equip9_3, equip10_1, equip10_2, equip10_3, equip11_1, equip11_2, equip12_1, equip12_2, equip12_3, equip13_1, equip13_2, equip13_3, equip14_1, equip14_2, equip14_3, Obs, Assinatura) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                [inspetorUm, inspetorDois, date, setor, timeStart, timeEnd, timeStartSala1, timeEndSala1, timeStartSala2, timeEndSala2, timeStartSala3, timeEndSala3, timeStartSala4, timeEndSala4, timeStartCrpa, timeEndCrpa, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6, equip2_1, equip2_2, equip2_3, equip2_4, equip2_5, equip2_6, equip2_7, equip2_8, equip3_1, equip3_2, equip3_3, equip3_4, equip4_1, equip4_2, equip4_3, equip4_4, equip5_1, equip5_2, equip5_3, equip6_1, equip6_2, equip6_3, equip7_1, equip7_2, equip8_1, equip8_2, equip9_1, equip9_2, equip9_3, equip10_1, equip10_2, equip10_3, equip11_1, equip11_2, equip12_1, equip12_2, equip12_3, equip13_1, equip13_2, equip13_3, equip14_1, equip14_2,equip14_3, obs, assinatura],
                 (err) => {
                     if (err) {
                         res.send(err);

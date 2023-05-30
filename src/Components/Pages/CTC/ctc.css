@@ -15,3 +15,10 @@
     text-align: center;
     margin-bottom: 40px;
 }
+
+#mensagemEscondida,
+#mensagemEscondidaInspetor{
+    color: red;
+    display: none;
+    text-align: center;
+}

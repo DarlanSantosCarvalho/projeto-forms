@@ -6,6 +6,7 @@ import Axios from "axios"
 function UTIB() {
 
     function handleClickCompareTime() {
+        const mensagemEscondida = document.getElementById('mensagemEscondida')
         const tempoInicio = document.getElementById('timeStart').value
         const tempoFim = document.getElementById('timeEnd').value
         const botao = document.getElementById('botao')
@@ -13,26 +14,28 @@ function UTIB() {
         if (tempoFim > tempoInicio) {
             console.log('Tudo certo')
             botao.style.pointerEvents = 'all'
+            mensagemEscondida.style.display = 'none'
         } else {
-            window.alert('O tempo final não pode ser menor ou igual ao tempo de início')
             botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
         }
     }
 
     function handleClickCompareTecnico() {
+        const mensagemEscondida = document.getElementById('mensagemEscondidaInspetor')
         const inspetorUm = document.getElementById('tecnicoUm').value;
         const inspetorDois = document.getElementById('tecnicoDois').value;
         const botao = document.getElementById('botao');
 
-        if (inspetorUm != inspetorDois) {
-            console.log('Tudo certo');
-            botao.style.pointerEvents = 'all';
-        } else if (inspetorUm == "NA" || inspetorDois == "NA") {
-            window.alert('Selecione algum técnico');
+        if (inspetorUm === "NA" || inspetorDois === "NA") {
             botao.style.pointerEvents = 'none';
+            mensagemEscondida.style.display = 'block';
+        } else if (inspetorDois === inspetorUm || inspetorUm === inspetorDois) {
+            botao.style.pointerEvents = 'none';
+            mensagemEscondida.style.display = 'block';
         } else {
-            window.alert('Não podem ser técnicos iguais');
-            botao.style.pointerEvents = 'none';
+            botao.style.pointerEvents = 'all';
+            mensagemEscondida.style.display = 'none';
         }
     }
 
@@ -109,7 +112,7 @@ function UTIB() {
             <div className="main">
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select onClick={() => handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
+                    <select onMouseOut={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -145,7 +148,7 @@ function UTIB() {
                     <label>Horário de início:</label>
                     <input type="time"{...register('timeStart')} id="timeStart" />
                     <label>Horário de saída:</label>
-                    <input onMouseLeave={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
+                    <input onMouseOut={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                 </div>
             </div>
 
@@ -446,7 +449,9 @@ function UTIB() {
 
 
             </section>
-            <button type='submit'>Enviar</button>
+            <button id='botao' type='submit'>Enviar</button>
+            <h2 id='mensagemEscondida'>Corrija o horário para enviar a inspeção</h2>
+            <h2 id='mensagemEscondidaInspetor'>Corrija o inspetor para enviar a inspeção</h2>
         </form >
     )
 }

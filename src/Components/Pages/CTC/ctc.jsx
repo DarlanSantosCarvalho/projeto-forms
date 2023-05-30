@@ -1,11 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form"
 import "./ctc.css"
 import Axios from "axios"
 
 function CTC() {
+    useEffect(() => {
+        handleClickGetDate();
+    }, []);
+
+    function handleClickGetDate() {
+        const quintas = document.querySelectorAll('.quinta');
+        const sexta = document.querySelector('.sexta')
+        const date = new Date();
+        const today = date.getDay();
+        console.log(today);
+
+        if (today === 4) {
+            quintas.forEach(quinta => {
+                quinta.style.display = 'block';
+            });
+        } else {
+            quintas.forEach(quinta => {
+                quinta.style.display = 'none';
+            });
+        }
+
+        if (today === 5) {
+            sexta.style.display = 'block'
+        } else {
+            sexta.style.display = 'none'
+        }
+    }
+
 
     function handleClickCompareTime() {
+        const mensagemEscondida = document.getElementById('mensagemEscondida')
         const tempoInicio = document.getElementById('timeStart').value
         const tempoFim = document.getElementById('timeEnd').value
         const botao = document.getElementById('botao')
@@ -13,26 +42,28 @@ function CTC() {
         if (tempoFim > tempoInicio) {
             console.log('Tudo certo')
             botao.style.pointerEvents = 'all'
+            mensagemEscondida.style.display = 'none'
         } else {
-            window.alert('O tempo final não pode ser menor ou igual ao tempo de início')
             botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
         }
     }
 
     function handleClickCompareTecnico() {
+        const mensagemEscondida = document.getElementById('mensagemEscondidaInspetor')
         const inspetorUm = document.getElementById('tecnicoUm').value;
         const inspetorDois = document.getElementById('tecnicoDois').value;
         const botao = document.getElementById('botao');
 
-        if (inspetorUm != inspetorDois) {
-            console.log('Tudo certo');
+        if (inspetorUm === "NA" || inspetorDois === "NA") {
+            botao.style.pointerEvents = 'none';
+            mensagemEscondida.style.display = 'block';
+        } else if(inspetorDois === inspetorUm || inspetorUm === inspetorDois) {
+            botao.style.pointerEvents = 'none';
+            mensagemEscondida.style.display = 'block';
+        }else{
             botao.style.pointerEvents = 'all';
-        } else if (inspetorUm == "NA" || inspetorDois == "NA") {
-            window.alert('Selecione algum técnico');
-            botao.style.pointerEvents = 'none';
-        } else {
-            window.alert('Não podem ser técnicos iguais');
-            botao.style.pointerEvents = 'none';
+            mensagemEscondida.style.display = 'none';
         }
     }
 
@@ -56,7 +87,7 @@ function CTC() {
 
     const onSubmit = (e) => {
         console.log(e);
-        Axios.post("http://localhost:3000/Centro", {
+        Axios.post("http://localhost:3000/CTC", {
             tecnicoUm: e.tecnicoUm,
             tecnicoDois: e.tecnicoDois,
             timeStartSala1: e.timeStartSala1,
@@ -113,8 +144,17 @@ function CTC() {
             equip10_1: e.equip10_1,
             equip10_2: e.equip10_2,
             equip10_3: e.equip10_3, //BOMBA DE INFUSÃO
-            equip11_1: e.equip11_1, 
-            equip11_2: e.equip11_2 //IDENTIFICAÇÃO DOS EQUIPAMENTOS E INTEGRIDADE FÍSICA
+            equip11_1: e.equip11_1,
+            equip11_2: e.equip11_2, //IDENTIFICAÇÃO DOS EQUIPAMENTOS E INTEGRIDADE FÍSICA
+            equip12_1: e.equip12_1,
+            equip12_2: e.equip12_2,
+            equip12_3: e.equip12_3, //POLÍGRAFO
+            equip13_1: e.equip13_1,
+            equip13_2: e.equip13_2,
+            equip13_3: e.equip13_3, //BOMBA INJETORA DE CONTRASTE
+            equip14_1: e.equip14_1,
+            equip14_1: e.equip14_1,
+            equip14_3: e.equip14_3, //TORRE DE VÍDEO
         })
             .then((response) => {
                 console.log(response);
@@ -139,7 +179,7 @@ function CTC() {
 
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select onClick={() => handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
+                    <select onMouseOut={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -175,7 +215,7 @@ function CTC() {
                     <label>Horário de início:</label>
                     <input type="time"{...register('timeStart')} id="timeStart" />
                     <label>Horário de saída:</label>
-                    <input onMouseLeave={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
+                    <input onMouseOut={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                 </div>
 
                 <div className="salas">
@@ -183,9 +223,9 @@ function CTC() {
                         <div className='salas'>
                             <h3>Sala 1</h3>
                             <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartSala1')} id="timeStart" /> <br />
+                            <input type="time"{...register('timeStartSala1')} id="timeStartSala1" /> <br />
                             <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndSala1')} id="timeEnd" />
+                            <input type="time" {...register('timeEndSala1')} id="timeEndSala1" />
                         </div>
                     </fieldset>
 
@@ -193,9 +233,9 @@ function CTC() {
                         <div className='salas'>
                             <h3>Sala 2</h3>
                             <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartSala2')} id="timeStart" /> <br />
+                            <input type="time"{...register('timeStartSala2')} id="timeStartSala2" /> <br />
                             <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndSala2')} id="timeEnd" />
+                            <input type="time" {...register('timeEndSala2')} id="timeEndSala2" />
                         </div>
                     </fieldset>
 
@@ -203,9 +243,9 @@ function CTC() {
                         <div className='salas'>
                             <h3>Sala 3</h3>
                             <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartSala3')} id="timeStart" /> <br />
+                            <input type="time"{...register('timeStartSala3')} id="timeStartSala3" /> <br />
                             <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndSala3')} id="timeEnd" />
+                            <input type="time" {...register('timeEndSala3')} id="timeEndSala3" />
                         </div>
                     </fieldset>
 
@@ -213,9 +253,9 @@ function CTC() {
                         <div className='salas'>
                             <h3>Sala 4</h3>
                             <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartSala4')} id="timeStart" /> <br />
+                            <input type="time"{...register('timeStartSala4')} id="timeStartSala4" /> <br />
                             <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndSala4')} id="timeEnd" />
+                            <input type="time" {...register('timeEndSala4')} id="timeEndSala4" />
                         </div>
                     </fieldset>
 
@@ -223,9 +263,9 @@ function CTC() {
                         <div className='salas'>
                             <h3>CRPA</h3>
                             <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartCrpa')} id="timeStart" /> <br />
+                            <input type="time"{...register('timeStartCrpa')} id="timeStartCrpa" /> <br />
                             <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndCrpa')} id="timeEnd" />
+                            <input type="time" {...register('timeEndCrpa')} id="timeEndCrpa" />
                         </div>
                     </fieldset>
                 </div>
@@ -485,9 +525,9 @@ function CTC() {
 
                             <div className="hidden" id='escondido'>
                                 <h2>VERIFICAÇÃO DA CONFIGURAÇÃO DO ARCO</h2>
-                                <input type="radio" {...register('equip8_2')} value="Conforme" id="conformity" />
+                                <input type="radio" {...register('equip8_2')} value="FLUROSCOPIA (CATETERISMO)" id="conformity" />
                                 <label for="">FLUROSCOPIA (CATETERISMO)</label>
-                                <input type="radio" {...register('equip8_2')} value="Inconforme" id="nonconformity" />
+                                <input type="radio" {...register('equip8_2')} value="VASCULAR (RADIOINTERVENÇÃO)" id="nonconformity" />
                                 <label for="">VASCULAR (RADIOINTERVENÇÃO)</label>
                             </div>
 
@@ -559,6 +599,78 @@ function CTC() {
                         </fieldset>
                     </div>
 
+                    <div className="equipment-1 quinta">
+                        <h2>POLÍGRAFO</h2>
+
+                        <fieldset>
+                            <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
+                            <input type="radio" {...register('equip12_1')} value="Conforme" id="conformity" />
+                            <label for="">Conforme</label>
+                            <input type="radio" {...register('equip12_1')} value="Inconforme" id="nonconformity" />
+                            <label for="">Não conforme</label>
+
+                            <p>VERIFICAÇÃO DO MODULO DE PAM COM O SIMULADOR</p>
+                            <input type="radio" {...register('equip12_2')} value="Conforme" id="conformity" />
+                            <label for="">Conforme</label>
+                            <input type="radio" {...register('equip12_2')} value="Inconforme" id="nonconformity" />
+                            <label for="">Não conforme</label>
+
+                            <p>VERIFICAÇÃO DO MODULO DE ECG COM O SIMULADOR</p>
+                            <input type="radio" {...register('equip12_3')} value="Conforme" id="conformity" />
+                            <label for="">Conforme</label>
+                            <input type="radio" {...register('equip12_3')} value="Inconforme" id="nonconformity" />
+                            <label for="">Não conforme</label>
+                        </fieldset>
+                    </div>
+
+                    <div className="equipment-1 quinta">
+                        <h2>BOMBA INJETORA DE CONTRASTE</h2>
+
+                        <fieldset>
+                            <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
+                            <input type="radio" {...register('equip13_1')} value="Conforme" id="conformity" />
+                            <label for="">Conforme</label>
+                            <input type="radio" {...register('equip13_1')} value="Inconforme" id="nonconformity" />
+                            <label for="">Não conforme</label>
+
+                            <p>VERIFICAÇÃO DAS TRAVAS DO RECIPIENTE DA SERINGA</p>
+                            <input type="radio" {...register('equip13_2')} value="Conforme" id="conformity" />
+                            <label for="">Conforme</label>
+                            <input type="radio" {...register('equip13_2')} value="Inconforme" id="nonconformity" />
+                            <label for="">Não conforme</label>
+
+                            <p>VERIFICAÇÃO FUNCIONAL DO EQUIPAMENTO</p>
+                            <input type="radio" {...register('equip13_3')} value="Conforme" id="conformity" />
+                            <label for="">Conforme</label>
+                            <input type="radio" {...register('equip13_3')} value="Inconforme" id="nonconformity" />
+                            <label for="">Não conforme</label>
+                        </fieldset>
+                    </div>
+
+                    <div className="equipment-1 sexta">
+                        <h2>TORRE DE VÍDEO</h2>
+
+                        <fieldset>
+                            <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
+                            <input type="radio" {...register('equip14_1')} value="Conforme" id="conformity" />
+                            <label for="">Conforme</label>
+                            <input type="radio" {...register('equip14_1')} value="Inconforme" id="nonconformity" />
+                            <label for="">Não conforme</label>
+
+                            <p>REALIZAR TESTE FUNCIONAL EM TODOS OS MÓDULOS</p>
+                            <input type="radio" {...register('equip14_2')} value="Conforme" id="conformity" />
+                            <label for="">Conforme</label>
+                            <input type="radio" {...register('equip14_2')} value="Inconforme" id="nonconformity" />
+                            <label for="">Não conforme</label>
+
+                            <p>VERIFICAÇÃO DO CABO DE FIBRA ÓPTICA</p>
+                            <input type="radio" {...register('equip14_3')} value="Conforme" id="conformity" />
+                            <label for="">Conforme</label>
+                            <input type="radio" {...register('equip14_3')} value="Inconforme" id="nonconformity" />
+                            <label for="">Não conforme</label>
+                        </fieldset>
+                    </div>
+
 
 
                     <h2>OBSERVAÇÕES</h2>
@@ -577,6 +689,8 @@ function CTC() {
 
                 </section>
                 <button id="botao" type='submit'>Enviar</button>
+                <h2 id='mensagemEscondida'>Corrija o horário para enviar a inspeção</h2>
+                <h2 id='mensagemEscondidaInspetor'>Corrija o inspetor para enviar a inspeção</h2>
             </div>
         </form >
     )
