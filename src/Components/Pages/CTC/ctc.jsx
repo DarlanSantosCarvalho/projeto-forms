@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form"
 import "./ctc.css"
+import "../responsive.css"
 import Axios from "axios"
 
 function CTC() {

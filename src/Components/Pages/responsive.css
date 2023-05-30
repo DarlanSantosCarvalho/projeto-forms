@@ -1,0 +1,20 @@
+@media screen and (max-width: 768px) {
+    .tempo{
+        display: grid;
+        place-items: center;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    h2{
+        font-size: 1.2rem;
+    }
+
+    h3{
+        font-size: 1rem;
+    }
+
+    p{
+        font-size: 0.9rem;
+    }
+}
