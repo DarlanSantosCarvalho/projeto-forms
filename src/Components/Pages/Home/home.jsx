@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import "./home.css"
 
 function Home() {
@@ -15,24 +16,26 @@ function Home() {
 
             <div className='opcoes'>
                 <h2>
-                    <a href="/UTIA">UTI A</a>
+                    <Link to="/UTIA/">UTI A</Link>
                 </h2>
 
                 <h2>
-                    <a href="/UTIB">UTI B</a>
+                    <Link to="/UTIB">UTI B</Link>
                 </h2>
 
                 <h2>
-                    <a href="/UTIC">UTI C</a>
+                    <Link to="/UTIC">UTI C</Link>
+                </h2>
+
+
+                <h2>
+                    <Link to="/UTINEO">UTI NEONATAL</Link>
                 </h2>
 
                 <h2>
-                    <a href="/UTINEO">UTI NEO</a>
+                    <Link to="/CTC">CENTRO CIRÚRGICO</Link>
                 </h2>
 
-                <h2>
-                    <a href="/CTC">CENTRO CIRÚRGICO</a>
-                </h2>
             </div>
         </div>
     )
