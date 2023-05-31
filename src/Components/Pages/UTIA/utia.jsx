@@ -105,7 +105,7 @@ function UTIA() {
 
             <div className='logo'>
                 <a href="/">
-                    <img src="src/assets/images/cropped-logo-martagao.png" alt="Logo do Hospital Martagão Gesteira" />
+                    <img src="https://seeklogo.com/images/M/martagao-gesteira-logo-DA1D4B5F7A-seeklogo.com.png" alt="Logo do Hospital Martagão Gesteira" />
                 </a>
             </div>
 
