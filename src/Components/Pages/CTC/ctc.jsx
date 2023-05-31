@@ -214,7 +214,7 @@ function CTC() {
                     <label>Data:</label>
                     <input type="date" {...register('date')} id="date" />
                     <label>Horário de início:</label>
-                    <input type="time"{...register('timeStart')} id="timeStart" />
+                    <input onClick={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" />
                     <label>Horário de saída:</label>
                     <input onClick={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                 </div>
