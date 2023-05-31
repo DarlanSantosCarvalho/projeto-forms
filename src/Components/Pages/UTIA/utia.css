@@ -98,3 +98,15 @@ button:hover{
 .tempo{
     flex-wrap: wrap;
 }
+
+#conformity,
+#nonconformity{
+    height: 20px;
+    width: 20px;
+}
+
+#conformity:hover,
+#nonconformity:hover{
+    height: 25px;
+    width: 25px;
+}

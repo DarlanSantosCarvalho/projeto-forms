@@ -59,10 +59,10 @@ function CTC() {
         if (inspetorUm === "NA" || inspetorDois === "NA") {
             botao.style.pointerEvents = 'none';
             mensagemEscondida.style.display = 'block';
-        } else if(inspetorDois === inspetorUm || inspetorUm === inspetorDois) {
+        } else if (inspetorDois === inspetorUm || inspetorUm === inspetorDois) {
             botao.style.pointerEvents = 'none';
             mensagemEscondida.style.display = 'block';
-        }else{
+        } else {
             botao.style.pointerEvents = 'all';
             mensagemEscondida.style.display = 'none';
         }
@@ -180,7 +180,7 @@ function CTC() {
 
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select onMouseOut={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
+                    <select onClick={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -192,7 +192,7 @@ function CTC() {
 
                 <div className="tecnicoDois">
                     <label for="Técnico executor: ">Técnico executor 2:</label>
-                    <select onMouseOut={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} required>
+                    <select onClick={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} required>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -216,59 +216,50 @@ function CTC() {
                     <label>Horário de início:</label>
                     <input type="time"{...register('timeStart')} id="timeStart" />
                     <label>Horário de saída:</label>
-                    <input onMouseOut={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
+                    <input onClick={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                 </div>
 
                 <div className="salas">
-                    <fieldset>
-                        <div className='salas'>
-                            <h3>Sala 1</h3>
-                            <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartSala1')} id="timeStartSala1" /> <br />
-                            <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndSala1')} id="timeEndSala1" />
-                        </div>
-                    </fieldset>
+                    <div className='salas'>
+                        <h3>Sala 1</h3>
+                        <label>Horário de início:</label>
+                        <input type="time"{...register('timeStartSala1')} id="timeStartSala1" /> <br />
+                        <label>Horário de saída:</label>
+                        <input type="time" {...register('timeEndSala1')} id="timeEndSala1" />
+                    </div>
 
-                    <fieldset>
-                        <div className='salas'>
-                            <h3>Sala 2</h3>
-                            <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartSala2')} id="timeStartSala2" /> <br />
-                            <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndSala2')} id="timeEndSala2" />
-                        </div>
-                    </fieldset>
+                    <div className='salas'>
+                        <h3>Sala 2</h3>
+                        <label>Horário de início:</label>
+                        <input type="time"{...register('timeStartSala2')} id="timeStartSala2" /> <br />
+                        <label>Horário de saída:</label>
+                        <input type="time" {...register('timeEndSala2')} id="timeEndSala2" />
+                    </div>
 
-                    <fieldset>
-                        <div className='salas'>
-                            <h3>Sala 3</h3>
-                            <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartSala3')} id="timeStartSala3" /> <br />
-                            <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndSala3')} id="timeEndSala3" />
-                        </div>
-                    </fieldset>
 
-                    <fieldset>
-                        <div className='salas'>
-                            <h3>Sala 4</h3>
-                            <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartSala4')} id="timeStartSala4" /> <br />
-                            <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndSala4')} id="timeEndSala4" />
-                        </div>
-                    </fieldset>
+                    <div className='salas'>
+                        <h3>Sala 3</h3>
+                        <label>Horário de início:</label>
+                        <input type="time"{...register('timeStartSala3')} id="timeStartSala3" /> <br />
+                        <label>Horário de saída:</label>
+                        <input type="time" {...register('timeEndSala3')} id="timeEndSala3" />
+                    </div>
 
-                    <fieldset>
-                        <div className='salas'>
-                            <h3>CRPA</h3>
-                            <label>Horário de início:</label>
-                            <input type="time"{...register('timeStartCrpa')} id="timeStartCrpa" /> <br />
-                            <label>Horário de saída:</label>
-                            <input type="time" {...register('timeEndCrpa')} id="timeEndCrpa" />
-                        </div>
-                    </fieldset>
+                    <div className='salas'>
+                        <h3>Sala 4</h3>
+                        <label>Horário de início:</label>
+                        <input type="time"{...register('timeStartSala4')} id="timeStartSala4" /> <br />
+                        <label>Horário de saída:</label>
+                        <input type="time" {...register('timeEndSala4')} id="timeEndSala4" />
+                    </div>
+
+                    <div className='salas'>
+                        <h3>CRPA</h3>
+                        <label>Horário de início:</label>
+                        <input type="time"{...register('timeStartCrpa')} id="timeStartCrpa" /> <br />
+                        <label>Horário de saída:</label>
+                        <input type="time" {...register('timeEndCrpa')} id="timeEndCrpa" />
+                    </div>
                 </div>
 
                 <section className="equipments">
@@ -277,43 +268,41 @@ function CTC() {
 
                     <div className="equipment-1">
 
-                        <fieldset>
-                            <p>VERIFICAR INTEGRIDADE DA BRAÇADEIRA E EXTENSOR DE PNI</p>
-                            <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip1_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR INTEGRIDADE DA BRAÇADEIRA E EXTENSOR DE PNI</p>
+                        <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip1_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICA INTEGRIDADE DO CABO DE ECG</p>
-                            <input type="radio" {...register('equip1_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip1_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICA INTEGRIDADE DO CABO DE ECG</p>
+                        <input type="radio" {...register('equip1_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip1_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR INTEGRIDADE DO SENSOR DE OXIMETRIA E PRÉ CABO (SE EXISTIR)</p>
-                            <input type="radio" {...register('equip1_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip1_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR INTEGRIDADE DO SENSOR DE OXIMETRIA E PRÉ CABO (SE EXISTIR)</p>
+                        <input type="radio" {...register('equip1_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip1_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR PRESENÇA DE PARÂMETRO DOS MÓDULOS EXTERNOS NA TELA</p>
-                            <input type="radio" {...register('equip1_4')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip1_4')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR PRESENÇA DE PARÂMETRO DOS MÓDULOS EXTERNOS NA TELA</p>
+                        <input type="radio" {...register('equip1_4')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip1_4')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR FUNCIONAMENTO DE CABO PAM COM SIMULADOR</p>
-                            <input type="radio" {...register('equip1_5')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip1_5')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR FUNCIONAMENTO DE CABO PAM COM SIMULADOR</p>
+                        <input type="radio" {...register('equip1_5')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip1_5')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR SE OS MONITORES ESTÃO LIGADOS NA REDE ELÉTRICA</p>
-                            <input type="radio" {...register('equip1_6')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip1_6')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>VERIFICAR SE OS MONITORES ESTÃO LIGADOS NA REDE ELÉTRICA</p>
+                        <input type="radio" {...register('equip1_6')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip1_6')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
 
@@ -321,313 +310,289 @@ function CTC() {
 
                     <div className="equipment-1">
 
-                        <fieldset>
-                            <p>CIRCUITO JÁ MONTADO NO APARELHO</p>
-                            <input type="radio" {...register('equip2_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip2_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>CIRCUITO JÁ MONTADO NO APARELHO</p>
+                        <input type="radio" {...register('equip2_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip2_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>TESTE DE FUGA</p>
-                            <input type="radio" {...register('equip2_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip2_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>TESTE DE FUGA</p>
+                        <input type="radio" {...register('equip2_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip2_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>CALIBRAÇÃO DE FLUXO</p>
-                            <input type="radio" {...register('equip2_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip2_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>CALIBRAÇÃO DE FLUXO</p>
+                        <input type="radio" {...register('equip2_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip2_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>CALIBRAÇÃO DE CÉLULA DE O2</p>
-                            <input type="radio" {...register('equip2_4')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip2_4')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>CALIBRAÇÃO DE CÉLULA DE O2</p>
+                        <input type="radio" {...register('equip2_4')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip2_4')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR CONDIÇÕES DE VISUALIZAÇÃO DA TELA E INTEGRIDADE DO DISPLAY</p>
-                            <input type="radio" {...register('equip2_5')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip2_5')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR CONDIÇÕES DE VISUALIZAÇÃO DA TELA E INTEGRIDADE DO DISPLAY</p>
+                        <input type="radio" {...register('equip2_5')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip2_5')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR SE O PLUG NÃO ESTÁ DANIFICADO E SE O CABO ESTÁ ÍNTEGRO EM TODA SUA EXTENSÃO</p>
-                            <input type="radio" {...register('equip2_6')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip2_6')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR SE O PLUG NÃO ESTÁ DANIFICADO E SE O CABO ESTÁ ÍNTEGRO EM TODA SUA EXTENSÃO</p>
+                        <input type="radio" {...register('equip2_6')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip2_6')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR FUGA E COMPLACÊNCIA COM CIRCUITO RESPIRATÓRIO DA SALA</p>
-                            <input type="radio" {...register('equip2_7')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip2_7')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR FUGA E COMPLACÊNCIA COM CIRCUITO RESPIRATÓRIO DA SALA</p>
+                        <input type="radio" {...register('equip2_7')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip2_7')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR SE OS EQUIPAMENTOS ENCONTRAM-SE LIGADOS NA REDE ELÉTRICA</p>
-                            <input type="radio" {...register('equip2_8')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip2_8')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>VERIFICAR SE OS EQUIPAMENTOS ENCONTRAM-SE LIGADOS NA REDE ELÉTRICA</p>
+                        <input type="radio" {...register('equip2_8')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip2_8')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <h2>FOCO CIRURGICO</h2>
 
                     <div className="equipment-1">
 
-                        <fieldset>
-                            <p>VERIFICAR CONDIÇÕES DA MEMBRANA E ACIONAMENTO.</p>
-                            <input type="radio" {...register('equip3_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip3_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR CONDIÇÕES DA MEMBRANA E ACIONAMENTO.</p>
+                        <input type="radio" {...register('equip3_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip3_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>OBSERVAR SE SINALIZAÇÃO DE TROCA DE LAMPADA ENCONTRA-SE ACESA.</p>
-                            <input type="radio" {...register('equip3_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip3_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>OBSERVAR SE SINALIZAÇÃO DE TROCA DE LAMPADA ENCONTRA-SE ACESA.</p>
+                        <input type="radio" {...register('equip3_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip3_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR AJUSTE DA LUMINOSIDADE</p>
-                            <input type="radio" {...register('equip3_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip3_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR AJUSTE DA LUMINOSIDADE</p>
+                        <input type="radio" {...register('equip3_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip3_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR MOVIMENTOS DO BRAÇO ARTICULADO/ FREIO</p>
-                            <input type="radio" {...register('equip3_4')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip3_4')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>VERIFICAR MOVIMENTOS DO BRAÇO ARTICULADO/ FREIO</p>
+                        <input type="radio" {...register('equip3_4')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip3_4')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <h2>MESA CIRÚRGICA</h2>
 
                     <div className="equipment-1">
+                        <p>VERIFICAR MOVIMENTOS (ELÉTRICOS )</p>
+                        <input type="radio" {...register('equip4_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip4_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                        <fieldset>
-                            <p>VERIFICAR MOVIMENTOS (ELÉTRICOS )</p>
-                            <input type="radio" {...register('equip4_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip4_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR OS COMANDOS DE ACIONAMENTO NO CONTROLE</p>
+                        <input type="radio" {...register('equip4_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip4_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR OS COMANDOS DE ACIONAMENTO NO CONTROLE</p>
-                            <input type="radio" {...register('equip4_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip4_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR CONDIÇÕES DE CARGA BATERIA</p>
+                        <input type="radio" {...register('equip4_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip4_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR CONDIÇÕES DE CARGA BATERIA</p>
-                            <input type="radio" {...register('equip4_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip4_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-
-                            <p>VERIFICAR SINAIS DE FERRUGEM, PEÇAS OU PARTES QUEBRADAS</p>
-                            <input type="radio" {...register('equip4_4')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip4_4')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>VERIFICAR SINAIS DE FERRUGEM, PEÇAS OU PARTES QUEBRADAS</p>
+                        <input type="radio" {...register('equip4_4')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip4_4')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <h2>CARDIOVERSOR</h2>
 
                     <div className="equipment-1">
 
-                        <fieldset>
-                            <p>REALIZAR TESTE DE ROTINA DO EQUIPAMENTO</p>
-                            <input type="radio" {...register('equip5_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip5_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>REALIZAR TESTE DE ROTINA DO EQUIPAMENTO</p>
+                        <input type="radio" {...register('equip5_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip5_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR LIMPEZA DAS PÁS</p>
-                            <input type="radio" {...register('equip5_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip5_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR LIMPEZA DAS PÁS</p>
+                        <input type="radio" {...register('equip5_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip5_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR SE OS CARDIOVERSORES ENCONTRAM-SE LIGADOS NA REDE ELÉTRICA</p>
-                            <input type="radio" {...register('equip5_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip5_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>VERIFICAR SE OS CARDIOVERSORES ENCONTRAM-SE LIGADOS NA REDE ELÉTRICA</p>
+                        <input type="radio" {...register('equip5_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip5_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <h2>BISTURI ELÉTRICO</h2>
 
                     <div className="equipment-1">
 
-                        <fieldset>
-                            <p>DISPOSITIVO DE CONTROLE - VERIFICAR INTEGRIDADE DA MEMBRANA E CHAVE DE AJUSTE DO POTENCIÔMETRO.</p>
-                            <input type="radio" {...register('equip6_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip6_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>DISPOSITIVO DE CONTROLE - VERIFICAR INTEGRIDADE DA MEMBRANA E CHAVE DE AJUSTE DO POTENCIÔMETRO.</p>
+                        <input type="radio" {...register('equip6_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip6_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>SINALIZAÇÃO - VERIFICAR SE AS SINALIZAÇÕES VISUAL E SONORA ESTÃO FUNCIONANDO.</p>
-                            <input type="radio" {...register('equip6_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip6_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>SINALIZAÇÃO - VERIFICAR SE AS SINALIZAÇÕES VISUAL E SONORA ESTÃO FUNCIONANDO.</p>
+                        <input type="radio" {...register('equip6_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip6_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>ACESSÓRIOS - VERIFICAR SE OS PEDAIS MONOPOLAR E BIPOLAR ESTÃO FUNCIONANDO</p>
-                            <input type="radio" {...register('equip6_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip6_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>ACESSÓRIOS - VERIFICAR SE OS PEDAIS MONOPOLAR E BIPOLAR ESTÃO FUNCIONANDO</p>
+                        <input type="radio" {...register('equip6_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip6_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <h2>ARCO CIRÚRGICO</h2>
 
                     <div className="equipment-1">
-                        <fieldset>
-                            <p>REALIZAR VERIFICAÇÃO FUNCIONAL DO EQUIPAMENTO</p>
-                            <input type="radio" {...register('equip7_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip7_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>REALIZAR VERIFICAÇÃO FUNCIONAL DO EQUIPAMENTO</p>
+                        <input type="radio" {...register('equip7_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip7_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>INSPEÇÃO VISUAL - VERIFICAR INTEGRIDADE VISUAL DO EQUIPAMENTO</p>
-                            <input type="radio" {...register('equip7_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip7_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>INSPEÇÃO VISUAL - VERIFICAR INTEGRIDADE VISUAL DO EQUIPAMENTO</p>
+                        <input type="radio" {...register('equip7_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip7_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <div className="condicional">
-                        <fieldset>
-                            <h2>O ARCO EM C ZIEHM ESTAVA NA SALA?</h2>
-                            <input
-                                type="radio"
-                                {...register('equip8_1')}
-                                value="Arco C ZIEHM na sala"
-                                id="positivo"
-                                onClick={handleClickYes}
-                            />
-                            <label htmlFor="positivo">Sim</label>
+                        <h2>O ARCO EM C ZIEHM ESTAVA NA SALA?</h2>
+                        <input
+                            type="radio"
+                            {...register('equip8_1')}
+                            value="Arco C ZIEHM na sala"
+                            id="positivo"
+                            onClick={handleClickYes}
+                        />
+                        <label htmlFor="positivo">Sim</label>
 
-                            <input
-                                type="radio"
-                                {...register('equip8_1')}
-                                value="Negativo"
-                                id="negativo"
-                                onClick={handleClickNo}
-                            />
-                            <label htmlFor="nonconformity">Não</label>
+                        <input
+                            type="radio"
+                            {...register('equip8_1')}
+                            value="Negativo"
+                            id="negativo"
+                            onClick={handleClickNo}
+                        />
+                        <label htmlFor="nonconformity">Não</label>
 
 
-                            <div className="hidden" id='escondido'>
-                                <h2>VERIFICAÇÃO DA CONFIGURAÇÃO DO ARCO</h2>
-                                <input type="radio" {...register('equip8_2')} value="FLUROSCOPIA (CATETERISMO)" id="conformity" />
-                                <label for="">FLUROSCOPIA (CATETERISMO)</label>
-                                <input type="radio" {...register('equip8_2')} value="VASCULAR (RADIOINTERVENÇÃO)" id="nonconformity" />
-                                <label for="">VASCULAR (RADIOINTERVENÇÃO)</label>
-                            </div>
+                        <div className="hidden" id='escondido'>
+                            <h2>VERIFICAÇÃO DA CONFIGURAÇÃO DO ARCO</h2>
+                            <input type="radio" {...register('equip8_2')} value="FLUROSCOPIA (CATETERISMO)" id="conformity" />
+                            <label for="">FLUROSCOPIA (CATETERISMO)</label>
+                            <input type="radio" {...register('equip8_2')} value="VASCULAR (RADIOINTERVENÇÃO)" id="nonconformity" />
+                            <label for="">VASCULAR (RADIOINTERVENÇÃO)</label>
+                        </div>
 
-                        </fieldset>
                     </div>
 
                     <div className="equipment-1">
                         <h2>MÁQUINA DE CEC</h2>
 
-                        <fieldset>
-                            <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
-                            <input type="radio" {...register('equip9_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip9_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
+                        <input type="radio" {...register('equip9_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip9_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR PONTO DE GASES / BLENDER</p>
-                            <input type="radio" {...register('equip9_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip9_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR PONTO DE GASES / BLENDER</p>
+                        <input type="radio" {...register('equip9_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip9_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAÇÃO FUNCIONAL DO EQUIPAMENTO E TECLADO MEMBRANA / POTENCIÔMETRO OU BOTÃO ROTATIVO</p>
-                            <input type="radio" {...register('equip9_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip9_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>VERIFICAÇÃO FUNCIONAL DO EQUIPAMENTO E TECLADO MEMBRANA / POTENCIÔMETRO OU BOTÃO ROTATIVO</p>
+                        <input type="radio" {...register('equip9_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip9_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
                     <div className="equipment-1">
                         <h2>BOMBA DE INFUSÃO</h2>
 
-                        <fieldset>
-                            <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
-                            <input type="radio" {...register('equip10_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip10_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
+                        <input type="radio" {...register('equip10_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip10_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR SE AS BOMBAS ESTÃO LIGADAS NA REDE ELÉTRICA</p>
-                            <input type="radio" {...register('equip10_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip10_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAR SE AS BOMBAS ESTÃO LIGADAS NA REDE ELÉTRICA</p>
+                        <input type="radio" {...register('equip10_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip10_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAR SE AS BOMBAS ESTÃO FUNCIONANDO FORA DA TOMADA</p>
-                            <input type="radio" {...register('equip10_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip10_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>VERIFICAR SE AS BOMBAS ESTÃO FUNCIONANDO FORA DA TOMADA</p>
+                        <input type="radio" {...register('equip10_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip10_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <div className="equipment-1">
                         <h2>IDENTIFICAÇÃO DOS EQUIPAMENTOS E INTEGRIDADE FÍSICA</h2>
 
-                        <fieldset>
-                            <p>OBSERVAR SE OS EQUIPAMENTOS ESTÃO DEVIDAMENTE IDENTIFICADOS (TAG, ETIQUETA DE PREVENTIVA, CALIBRAÇÃO, ETC)</p>
-                            <input type="radio" {...register('equip11_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip11_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>OBSERVAR SE OS EQUIPAMENTOS ESTÃO DEVIDAMENTE IDENTIFICADOS (TAG, ETIQUETA DE PREVENTIVA, CALIBRAÇÃO, ETC)</p>
+                        <input type="radio" {...register('equip11_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip11_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>OBSERVAR INTEGRIDADE FÍSICA DOS EQUIPAMENTOS</p>
-                            <input type="radio" {...register('equip11_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip11_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>OBSERVAR INTEGRIDADE FÍSICA DOS EQUIPAMENTOS</p>
+                        <input type="radio" {...register('equip11_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip11_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <div className="equipment-1 quinta">
                         <h2>POLÍGRAFO</h2>
 
-                        <fieldset>
-                            <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
-                            <input type="radio" {...register('equip12_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip12_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
+                        <input type="radio" {...register('equip12_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip12_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAÇÃO DO MODULO DE PAM COM O SIMULADOR</p>
-                            <input type="radio" {...register('equip12_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip12_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAÇÃO DO MODULO DE PAM COM O SIMULADOR</p>
+                        <input type="radio" {...register('equip12_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip12_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAÇÃO DO MODULO DE ECG COM O SIMULADOR</p>
-                            <input type="radio" {...register('equip12_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip12_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
-                        </fieldset>
+                        <p>VERIFICAÇÃO DO MODULO DE ECG COM O SIMULADOR</p>
+                        <input type="radio" {...register('equip12_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip12_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <div className="equipment-1 quinta">
                         <h2>BOMBA INJETORA DE CONTRASTE</h2>
 
-                        <fieldset>
                             <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
                             <input type="radio" {...register('equip13_1')} value="Conforme" id="conformity" />
                             <label for="">Conforme</label>
@@ -645,13 +610,11 @@ function CTC() {
                             <label for="">Conforme</label>
                             <input type="radio" {...register('equip13_3')} value="Inconforme" id="nonconformity" />
                             <label for="">Não conforme</label>
-                        </fieldset>
                     </div>
 
                     <div className="equipment-1 sexta">
                         <h2>TORRE DE VÍDEO</h2>
 
-                        <fieldset>
                             <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
                             <input type="radio" {...register('equip14_1')} value="Conforme" id="conformity" />
                             <label for="">Conforme</label>
@@ -669,7 +632,6 @@ function CTC() {
                             <label for="">Conforme</label>
                             <input type="radio" {...register('equip14_3')} value="Inconforme" id="nonconformity" />
                             <label for="">Não conforme</label>
-                        </fieldset>
                     </div>
 
 

@@ -112,7 +112,7 @@ function UTINEO() {
 
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select onMouseOut={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
+                    <select onClick={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -124,7 +124,7 @@ function UTINEO() {
 
                 <div className="tecnicoDois">
                     <label for="Técnico executor: ">Técnico executor 2:</label>
-                    <select onMouseOut={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} required>
+                    <select onClick={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} required>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -147,7 +147,7 @@ function UTINEO() {
                     <label>Horário de início:</label>
                     <input type="time"{...register('timeStart')} id="timeStart" />
                     <label>Horário de saída:</label>
-                    <input onMouseOut={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
+                    <input onClick={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                 </div>
             </div>
 
@@ -156,7 +156,6 @@ function UTINEO() {
                 <h2>INCUBADORA</h2>
 
                 <div className="equipment-1">
-                    <fieldset>
                         <p>VERIFICAR INTEGRIDADE DA BASE DO EQUIPAMENTO</p>
                         <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -180,7 +179,6 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip1_4')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
 
@@ -188,7 +186,6 @@ function UTINEO() {
 
                 <div className="equipment-1">
 
-                    <fieldset>
                         <p>VERIFICAR SE O MONITOR ESTÁ CONECTADO A REDE ELÉTRICA</p>
                         <input type="radio" {...register('equip2_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -218,7 +215,6 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip2_5')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
 
@@ -226,7 +222,6 @@ function UTINEO() {
 
                 <div className="equipment-1">
 
-                    <fieldset>
                         <p>VERIFICAR SE O VENTILADOR ESTÁ CONECTADO CORRETAMENTE NA REDE ELÉTRICA</p>
                         <input type="radio" {...register('equip3_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -250,14 +245,12 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip3_4')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
                 <h2>CARDIOVERSOR</h2>
 
                 <div className="equipment-1">
 
-                    <fieldset>
                         <p>VERIFICAR SE O EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
                         <input type="radio" {...register('equip4_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -281,14 +274,12 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip4_4')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
                 <h2>BERÇO AQUECIDO</h2>
 
                 <div className="equipment-1">
 
-                    <fieldset>
                         <p>VERIFICAR INTEGRIDADE DA BASE DO EQUIPAMENTO</p>
                         <input type="radio" {...register('equip5_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -306,14 +297,12 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip5_3')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
                 <h2>BALANÇA</h2>
 
                 <div className="equipment-1">
 
-                    <fieldset>
                         <p>VERIFICAR NIVELAMENTO</p>
                         <input type="radio" {...register('equip6_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -343,14 +332,12 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip6_5')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
                 <h2>ELETROCARDIÓGRAFO</h2>
 
                 <div className="equipment-1">
 
-                    <fieldset>
                         <p>VERIFICAR SE EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
                         <input type="radio" {...register('equip7_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -374,14 +361,12 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip7_4')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
                 <h2>SALA DE EQUIPAMENTOS/ CARRINHO DE EMERGÊNCIA</h2>
 
                 <div className="equipment-1">
 
-                    <fieldset>
                         <p>VERIFICAR INTEGRIDADE DOS EQUIPAMENTOS QUE ENCONTRAM-SE NA SALA</p>
                         <input type="radio" {...register('equip8_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -399,13 +384,11 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip8_3')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
                 <h2>VERIFICAÇÃO DE TAG's E ETIQUETAS DE PREVENTIVA</h2>
                 <div className="equipment-1">
 
-                    <fieldset>
                         <p>VERIFICAR SE TODOS OS EQUIPAMENTOS ESTÃO COM SUAS RESPECTIVAS TAG's</p>
                         <input type="radio" {...register('equip9_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -417,14 +400,12 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip9_2')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
                 <h2>BOMBA DE INFUSÃO E SERINGA</h2>
 
                 <div className="equipment-1">
 
-                    <fieldset>
                         <p>VERIFICAR SE A BOMBA ESTÁ CONECTADA A REDE ELÉTRICA</p>
                         <input type="radio" {...register('equip10_1')} value="Conforme" id="conformity" />
                         <label for="">Conforme</label>
@@ -436,7 +417,6 @@ function UTINEO() {
                         <label for="">Conforme</label>
                         <input type="radio" {...register('equip10_2')} value="Inconforme" id="nonconformity" />
                         <label for="">Não conforme</label>
-                    </fieldset>
                 </div>
 
                 <h2>OBSERVAÇÕES</h2>

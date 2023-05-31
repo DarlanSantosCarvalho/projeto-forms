@@ -1,31 +1,45 @@
 @media screen and (max-width: 768px) {
-    .tempo{
+    .tempo {
         display: grid;
         place-items: center;
         width: 50%;
         margin: 0 auto;
     }
 
-    .opcoes{
+    .opcoes {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
         gap: 25px;
     }
 
-    .home h1{
+    .home h1 {
         font-size: 1.3rem;
     }
 
-    h2{
+    h2 {
         font-size: 1.2rem;
     }
 
-    h3{
+    h3 {
         font-size: 1rem;
     }
 
-    p{
+    p {
         font-size: 0.9rem;
     }
+
+
+    #conformity,
+    #nonconformity {
+        height: 15px;
+        width: 15px;
+    }
+
+    #conformity:hover,
+    #nonconformity:hover {
+        height: 20px;
+        width: 20px;
+    }
+
 }
