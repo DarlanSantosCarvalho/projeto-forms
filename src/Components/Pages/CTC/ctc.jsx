@@ -154,7 +154,7 @@ function CTC() {
             equip13_2: e.equip13_2,
             equip13_3: e.equip13_3, //BOMBA INJETORA DE CONTRASTE
             equip14_1: e.equip14_1,
-            equip14_1: e.equip14_1,
+            equip14_2: e.equip14_2,
             equip14_3: e.equip14_3, //TORRE DE VÍDEO
         })
             .then((response) => {

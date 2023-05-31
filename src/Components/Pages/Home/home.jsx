@@ -6,7 +6,7 @@ function Home() {
     return (
 
 
-        <div>
+        <div className='home'>
             <div className='logo'>
                 <img src="src/assets/images/cropped-logo-martagao.png" alt="Logo do Hospital Martagão Gesteira" />
             </div>

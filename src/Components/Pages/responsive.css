@@ -6,6 +6,17 @@
         margin: 0 auto;
     }
 
+    .opcoes{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 25px;
+    }
+
+    .home h1{
+        font-size: 1.3rem;
+    }
+
     h2{
         font-size: 1.2rem;
     }
