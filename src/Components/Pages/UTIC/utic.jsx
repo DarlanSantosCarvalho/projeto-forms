@@ -98,7 +98,7 @@ function UTIC() {
             <div className="main">
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select onClick={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
+                    <select onInput={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -110,7 +110,7 @@ function UTIC() {
 
                 <div className="tecnicoDois">
                     <label for="Técnico executor: ">Técnico executor 2:</label>
-                    <select onClick={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} required>
+                    <select onInput={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} required>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -131,9 +131,9 @@ function UTIC() {
                     <label>Data:</label>
                     <input type="date" {...register('date')} id="date" />
                     <label>Horário de início:</label>
-                    <input onClick={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" />
+                    <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" />
                     <label>Horário de saída:</label>
-                    <input onClick={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
+                    <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                 </div>
             </div>
 
