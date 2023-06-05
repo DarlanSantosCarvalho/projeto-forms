@@ -49,14 +49,13 @@ fieldset{
     padding: 20px;
 }
 
-.equipment-1,
-.equipment-2 {
-    margin: 10px;
-    padding: 10px;
+.equipment-1{
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .equipment-1 p,
-.equipment-2 p {
+.equipment-2 p{
     padding: 15px;
     margin: 10px;
     font-family: "Poppins";

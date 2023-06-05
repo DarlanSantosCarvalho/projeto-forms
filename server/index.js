@@ -4,10 +4,10 @@ const mysql = require("mysql");
 const cors = require("cors")
 
 const pediatriaA = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "Escanor2200@",
-    database: "dados"
+    host: "aws.connect.psdb.cloud",
+    user: "kmlqde2ln095le2neubf",
+    password: "pscale_pw_HYbOqKdjur4OM54uuC14tvs6WAz85Hly5xVQac8ZjcN",
+    database: "hmg"
 });
 
 const pediatriaB = mysql.createPool({
