@@ -4,10 +4,11 @@ const mysql = require("mysql");
 const cors = require("cors")
 
 const pediatriaA = mysql.createPool({
-    host: "aws.connect.psdb.cloud",
-    user: "kmlqde2ln095le2neubf",
-    password: "pscale_pw_HYbOqKdjur4OM54uuC14tvs6WAz85Hly5xVQac8ZjcN",
-    database: "hmg"
+    host: "bgbjkzf3lzctpci4la9r-mysql.services.clever-cloud.com",
+    user: "u4yr2i6yvt886tcj",
+    password: "BfI6qESLzszDyei3UJn4",
+    database: "bgbjkzf3lzctpci4la9r",
+    port: 3306
 });
 
 const pediatriaB = mysql.createPool({
