@@ -11,7 +11,7 @@ function UTIC() {
         const tempoFim = document.getElementById('timeEnd').value
         const botao = document.getElementById('botao')
 
-        if (tempoFim > tempoInicio) {
+        if (tempoFim < tempoInicio || tempoFim == tempoInicio) {
             console.log('Tudo certo')
             botao.style.pointerEvents = 'all'
             mensagemEscondida.style.display = 'none'

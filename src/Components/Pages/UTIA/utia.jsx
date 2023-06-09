@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useForm } from "react-hook-form"
 import "./utia.css"
 import Axios from "axios"
@@ -11,7 +11,7 @@ function UTIA() {
         const tempoFim = document.getElementById('timeEnd').value
         const botao = document.getElementById('botao')
 
-        if (tempoFim < tempoInicio) {
+        if (tempoFim < tempoInicio || tempoFim == tempoInicio) {
             botao.style.pointerEvents = 'none'
             mensagemEscondida.style.display = 'block'
         } else {
@@ -38,7 +38,6 @@ function UTIA() {
             mensagemEscondida.style.display = 'none';
         }
     }
-
 
     const { register, handleSubmit } = useForm();
 
@@ -113,7 +112,7 @@ function UTIA() {
 
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select onInput={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')}>
+                    <select onInput={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')} name='tecnicoUm'>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -125,7 +124,7 @@ function UTIA() {
 
                 <div className="tecnicoDois">
                     <label for="Técnico executor: ">Técnico executor 2:</label>
-                    <select onInput={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} required>
+                    <select onInput={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')}name='tecnicoDois'>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -138,7 +137,7 @@ function UTIA() {
 
                 <div className="setor">
                     <label for="setor">Setor:</label>
-                    <select id="setor" {...register('setor')}>
+                    <select id="setor" {...register('setor')} name="setor">
                         <option value="UTI Pediatria A">UTI Pediatria A</option>
                     </select>
                 </div>
@@ -147,9 +146,9 @@ function UTIA() {
                     <label>Data:</label>
                     <input type="date" {...register('date')} id="date" />
                     <label>Horário de início:</label>
-                    <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" />
+                    <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" name='timeStart' />
                     <label>Horário de saída:</label>
-                    <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
+                    <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" name='timeEnd' />
                 </div>
             </div>
 
@@ -159,9 +158,9 @@ function UTIA() {
 
                 <div className="equipment-1">
                     <p>VERIFICAR A INTEGRIDADE DO MONITOR DA CENTRAL</p>
-                    <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" />
+                    <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" name='equip1_1'/>
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip1_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_1')} value="Inconforme" id="nonconformity" name='equip1_1' />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR SE TODOS OS LEITOS ESTÃO APARECENDO NO MONITOR NA ORDEM CORRETA</p>
@@ -438,3 +437,5 @@ function UTIA() {
 }
 
 export default UTIA
+
+

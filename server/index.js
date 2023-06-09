@@ -4,11 +4,10 @@ const mysql = require("mysql");
 const cors = require("cors")
 
 const pediatriaA = mysql.createPool({
-    host: "bgbjkzf3lzctpci4la9r-mysql.services.clever-cloud.com",
-    user: "u4yr2i6yvt886tcj",
-    password: "BfI6qESLzszDyei3UJn4",
-    database: "bgbjkzf3lzctpci4la9r",
-    port: 3306
+    host: "localhost",
+    user: "root",
+    password: "Escanor2200@",
+    database: "dados"
 });
 
 const pediatriaB = mysql.createPool({
@@ -406,3 +405,5 @@ app.post("/CTC", (req, res) => {
 
 app.listen(3000);
 console.log("Rodando na porta 3000");
+
+
