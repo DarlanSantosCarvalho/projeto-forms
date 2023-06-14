@@ -1,9 +1,25 @@
 import React from 'react';
+import { useRef } from 'react';
+import emailjs from '@emailjs/browser'
 import { useForm } from "react-hook-form"
 import "./utia.css"
 import Axios from "axios"
 
 function UTIA() {
+
+    const form = useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm('service_8htvafg', 'template_ty1aezm', form.current, 'CwXmNX4XAfgJqQ0s5')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+    };
+
 
     function handleClickCompareTime() {
         const mensagemEscondida = document.getElementById('mensagemEscondida')
@@ -99,7 +115,7 @@ function UTIA() {
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form ref={form} onSubmit={handleSubmit(onSubmit)}>
 
 
             <div className='logo'>
@@ -429,7 +445,7 @@ function UTIA() {
 
 
             </section>
-            <button id='botao' type='submit'>Enviar</button>
+            <button onClick={sendEmail} id='botao' type='submit'>Enviar</button>
             <h2 id='mensagemEscondida'>Corrija o horário para enviar a inspeção</h2>
             <h2 id='mensagemEscondidaInspetor'>Corrija o inspetor para enviar a inspeção</h2>
         </form >

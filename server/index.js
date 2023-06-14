@@ -3,7 +3,8 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors")
 
-const pediatriaA = mysql.createPool({
+
+const pediatriaA = mysql.createPool({ 
     host: "localhost",
     user: "root",
     password: "Escanor2200@",
