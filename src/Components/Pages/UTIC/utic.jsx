@@ -12,12 +12,12 @@ function UTIC() {
         const botao = document.getElementById('botao')
 
         if (tempoFim < tempoInicio || tempoFim == tempoInicio) {
+            botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
+        } else {
             console.log('Tudo certo')
             botao.style.pointerEvents = 'all'
             mensagemEscondida.style.display = 'none'
-        } else {
-            botao.style.pointerEvents = 'none'
-            mensagemEscondida.style.display = 'block'
         }
     }
 

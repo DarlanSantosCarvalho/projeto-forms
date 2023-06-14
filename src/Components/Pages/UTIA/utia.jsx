@@ -124,7 +124,7 @@ function UTIA() {
 
                 <div className="tecnicoDois">
                     <label for="Técnico executor: ">Técnico executor 2:</label>
-                    <select onInput={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')}name='tecnicoDois'>
+                    <select onInput={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} name='tecnicoDois'>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -144,7 +144,7 @@ function UTIA() {
 
                 <div className="tempo">
                     <label>Data:</label>
-                    <input type="date" {...register('date')} id="date" />
+                    <input type="date" {...register('date')} id="date" placeholder='Date' />
                     <label>Horário de início:</label>
                     <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" name='timeStart' />
                     <label>Horário de saída:</label>
@@ -158,7 +158,7 @@ function UTIA() {
 
                 <div className="equipment-1">
                     <p>VERIFICAR A INTEGRIDADE DO MONITOR DA CENTRAL</p>
-                    <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" name='equip1_1'/>
+                    <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" name='equip1_1' />
                     <label for="">Conforme</label>
                     <input type="radio" {...register('equip1_1')} value="Inconforme" id="nonconformity" name='equip1_1' />
                     <label for="">Não conforme</label>
