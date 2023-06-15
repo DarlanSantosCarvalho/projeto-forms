@@ -40,7 +40,7 @@ function UTIB() {
     }
 
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = (e) => {
         console.log(e);
@@ -92,6 +92,8 @@ function UTIB() {
         })
             .then((response) => {
                 console.log(response);
+                window.alert("O formulário foi enviado com sucesso");
+                reset();
             })
             .catch((error) => {
                 console.log(error);
