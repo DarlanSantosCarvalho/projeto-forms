@@ -84,6 +84,19 @@ button{
     cursor: pointer;
 }
 
+.botao-reset{
+    padding: 16px;
+    font-weight: 700;
+    border: none;
+    background-color: rgb(161, 161, 161);
+    border-radius: 18px;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
 select#setor{
     border: none;
 }
@@ -96,6 +109,10 @@ button:hover{
 
 .tempo{
     flex-wrap: wrap;
+}
+
+.assinatura{
+    border: none;
 }
 
 #conformity,

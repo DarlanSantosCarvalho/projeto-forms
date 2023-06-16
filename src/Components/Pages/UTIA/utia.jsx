@@ -1,10 +1,30 @@
-import React from 'react';
-import emailjs from '@emailjs/browser'
+import React, { useRef } from 'react';
 import { useForm } from "react-hook-form"
 import "./utia.css"
 import Axios from "axios"
+import SignatureCanvas from 'react-signature-canvas'
 
 function UTIA() {
+
+    const sigCanvasRef = useRef(null);
+
+    const handleClearSignature = (event) => {
+        event.preventDefault();
+        if (sigCanvasRef.current) {
+            sigCanvasRef.current.clear();
+        }
+    };
+
+    const handleSaveSignature = () => {
+        if (sigCanvasRef.current) {
+            const signatureDataURL = sigCanvasRef.current.toDataURL();
+            const signatureData = { signature: signatureDataURL };
+
+            // Utilize a propriedade signatureData como necessário
+            console.log(signatureData);
+        }
+    };
+
 
     function handleClickCompareTime() {
         const mensagemEscondida = document.getElementById('mensagemEscondida')
@@ -44,6 +64,7 @@ function UTIA() {
 
     const onSubmit = (e) => {
         console.log(e);
+        event.preventDefault()
         Axios.post("http://localhost:3000/UTIA", {
             tecnicoUm: e.tecnicoUm,
             tecnicoDois: e.tecnicoDois,
@@ -52,7 +73,6 @@ function UTIA() {
             timeStart: e.timeStart,
             timeEnd: e.timeEnd,
             obs: e.obs,
-            assinatura: e.assinatura,
             equip1_1: e.equip1_1,
             equip1_2: e.equip1_2,
             equip1_3: e.equip1_3, //CENTRAL DE MONITORIZAÇÃO
@@ -425,7 +445,23 @@ function UTIA() {
 
 
                 <label htmlFor="textarea">Assinatura</label>
-                <textarea {...register('assinatura')} id="obs" cols="30" rows="10"></textarea>
+
+                <fieldset className="assinatura">
+                    <SignatureCanvas
+                        backgroundColor="lightgray"
+                        {...register('assinatura')}
+                        canvasProps={{ width: 950, height: 250, className: 'sigCanvas' }}
+                        ref={sigCanvasRef}
+                    />
+                </fieldset>
+
+                <button className="botao-reset" onClick={handleClearSignature}>
+                    Limpar
+                </button>
+
+                <button className="botao-save" onClick={handleSaveSignature}>
+                    Salvar Assinatura
+                </button>
 
 
             </section>
