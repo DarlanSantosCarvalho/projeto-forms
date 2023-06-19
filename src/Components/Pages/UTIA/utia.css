@@ -111,8 +111,8 @@ button:hover{
     flex-wrap: wrap;
 }
 
-.assinatura{
-    border: none;
+.sigCanvas{
+    width: 100%;
 }
 
 #conformity,

@@ -1,13 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useForm } from "react-hook-form"
 import "./ctc.css"
 import "../responsive.css"
 import Axios from "axios"
+import SignatureCanvas from 'react-signature-canvas'
 
 function CTC() {
     useEffect(() => {
         handleClickGetDate();
     }, []);
+
+    const sigCanvasRef = useRef(null);
+
+    const handleClearSignature = (event) => {
+        event.preventDefault();
+        if (sigCanvasRef.current) {
+            sigCanvasRef.current.clear();
+        }
+    };
 
     function handleClickGetDate() {
         const quintas = document.querySelectorAll('.quinta');
@@ -595,45 +605,45 @@ function CTC() {
                     <div className="equipment-1 quinta">
                         <h2>BOMBA INJETORA DE CONTRASTE</h2>
 
-                            <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
-                            <input type="radio" {...register('equip13_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip13_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
+                        <input type="radio" {...register('equip13_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip13_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAÇÃO DAS TRAVAS DO RECIPIENTE DA SERINGA</p>
-                            <input type="radio" {...register('equip13_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip13_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAÇÃO DAS TRAVAS DO RECIPIENTE DA SERINGA</p>
+                        <input type="radio" {...register('equip13_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip13_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAÇÃO FUNCIONAL DO EQUIPAMENTO</p>
-                            <input type="radio" {...register('equip13_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip13_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAÇÃO FUNCIONAL DO EQUIPAMENTO</p>
+                        <input type="radio" {...register('equip13_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip13_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
                     <div className="equipment-1 sexta">
                         <h2>TORRE DE VÍDEO</h2>
 
-                            <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
-                            <input type="radio" {...register('equip14_1')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip14_1')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>INSPEÇÃO VISUAL DO EQUIPAMENTO</p>
+                        <input type="radio" {...register('equip14_1')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip14_1')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>REALIZAR TESTE FUNCIONAL EM TODOS OS MÓDULOS</p>
-                            <input type="radio" {...register('equip14_2')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip14_2')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>REALIZAR TESTE FUNCIONAL EM TODOS OS MÓDULOS</p>
+                        <input type="radio" {...register('equip14_2')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip14_2')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
 
-                            <p>VERIFICAÇÃO DO CABO DE FIBRA ÓPTICA</p>
-                            <input type="radio" {...register('equip14_3')} value="Conforme" id="conformity" />
-                            <label for="">Conforme</label>
-                            <input type="radio" {...register('equip14_3')} value="Inconforme" id="nonconformity" />
-                            <label for="">Não conforme</label>
+                        <p>VERIFICAÇÃO DO CABO DE FIBRA ÓPTICA</p>
+                        <input type="radio" {...register('equip14_3')} value="Conforme" id="conformity" />
+                        <label for="">Conforme</label>
+                        <input type="radio" {...register('equip14_3')} value="Inconforme" id="nonconformity" />
+                        <label for="">Não conforme</label>
                     </div>
 
 
@@ -649,13 +659,26 @@ function CTC() {
 
 
                     <label htmlFor="textarea">Assinatura</label>
-                    <textarea {...register('assinatura')} id="obs" cols="30" rows="10"></textarea>
+                    <fieldset className="assinatura">
+                        <SignatureCanvas
+                            backgroundColor="lightgray"
+                            {...register('assinatura')}
+                            canvasProps={{ width: 950, height: 250, className: 'sigCanvas' }}
+                            ref={sigCanvasRef}
+                        />
+                    </fieldset>
+
+                    <button className="botao-reset" onClick={handleClearSignature}>
+                        Limpar
+                    </button>
+
 
 
                 </section>
                 <button id="botao" type='submit'>Enviar</button>
                 <h2 id='mensagemEscondida'>Corrija o horário para enviar a inspeção</h2>
                 <h2 id='mensagemEscondidaInspetor'>Corrija o inspetor para enviar a inspeção</h2>
+                <h2 id='mensagemEscondidaConformidade'>Marque todos os botões para enviar a inspeção</h2>
             </div>
         </form >
     )

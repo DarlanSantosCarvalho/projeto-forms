@@ -1,9 +1,35 @@
-import React from 'react'
+import React, { useRef } from 'react';
 import { useForm } from "react-hook-form"
 import "./utineo.css"
 import Axios from "axios"
+import SignatureCanvas from 'react-signature-canvas'
 
 function UTINEO() {
+
+    const checkButton = () => {
+        const mensagemEscondidaConformidade = document.getElementById('mensagemEscondidaConformidade')
+        const botao = document.getElementById('botao')
+        var conformidades = document.querySelectorAll('input[type="radio"]')
+
+        conformidades.forEach(function (conformidade) {
+            if (conformidade.checked) {
+                mensagemEscondidaConformidade.style.display = 'none'
+                botao.style.pointerEvents = 'all'
+            } else {
+                mensagemEscondidaConformidade.style.display = 'block'
+                botao.style.pointerEvents = 'none'
+            }
+        });
+    }
+
+    const sigCanvasRef = useRef(null);
+
+    const handleClearSignature = (event) => {
+        event.preventDefault();
+        if (sigCanvasRef.current) {
+            sigCanvasRef.current.clear();
+        }
+    };
 
     function handleClickCompareTime() {
         const mensagemEscondida = document.getElementById('mensagemEscondida')
@@ -406,7 +432,7 @@ function UTINEO() {
 
                 <h2>BOMBA DE INFUSÃO E SERINGA</h2>
 
-                <div className="equipment-1">
+                <div className="equipment-1" onMouseLeave={checkButton}>
 
                     <p>VERIFICAR SE A BOMBA ESTÁ CONECTADA A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip10_1')} value="Conforme" id="conformity" />
@@ -432,13 +458,26 @@ function UTINEO() {
 
 
                 <label htmlFor="textarea">Assinatura</label>
-                <textarea {...register('assinatura')} id="obs" cols="30" rows="10"></textarea>
+
+                <fieldset className="assinatura">
+                    <SignatureCanvas
+                        backgroundColor="lightgray"
+                        {...register('assinatura')}
+                        canvasProps={{ width: 950, height: 250, className: 'sigCanvas' }}
+                        ref={sigCanvasRef}
+                    />
+                </fieldset>
+
+                <button className="botao-reset" onClick={handleClearSignature}>
+                    Limpar
+                </button>
 
 
             </section>
             <button id='botao' type='submit'>Enviar</button>
             <h2 id='mensagemEscondida'>Corrija o horário para enviar a inspeção</h2>
             <h2 id='mensagemEscondidaInspetor'>Corrija o inspetor para enviar a inspeção</h2>
+            <h2 id='mensagemEscondidaConformidade'>Marque todos os botões para enviar a inspeção</h2>
         </form >
     )
 }

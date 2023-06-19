@@ -1,3 +1,7 @@
+@media screen and (max-width: 1024px) {
+}
+
+
 @media screen and (max-width: 768px) {
     .tempo {
         display: grid;
@@ -40,6 +44,10 @@
     #nonconformity:hover {
         height: 20px;
         width: 20px;
+    }
+
+    .sigCanvas{
+
     }
 
 }

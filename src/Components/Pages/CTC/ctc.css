@@ -17,7 +17,8 @@
 }
 
 #mensagemEscondida,
-#mensagemEscondidaInspetor{
+#mensagemEscondidaInspetor,
+#mensagemEscondidaConformidade{
     color: red;
     display: none;
     text-align: center;
