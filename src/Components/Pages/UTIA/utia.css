@@ -25,7 +25,7 @@ body {
 .tecnicoUm label,
 .tecnicoDois label,
 .setor label,
-.tempo label{
+.tempo label {
     margin: 10px;
 }
 
@@ -38,31 +38,31 @@ body {
     gap: 20px;
 }
 
-h2{
+h2 {
     font-family: "Poppins";
     font-weight: 700;
     color: red;
     text-decoration: underline;
 }
 
-fieldset{
+fieldset {
     padding: 20px;
 }
 
-.equipment-1{
+.equipment-1 {
     margin-top: 40px;
     margin-bottom: 40px;
 }
 
 .equipment-1 p,
-.equipment-2 p{
+.equipment-2 p {
     padding: 15px;
     margin: 10px;
     font-family: "Poppins";
     font-weight: 600;
 }
 
-.equipments label{
+.equipments label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,7 +71,7 @@ fieldset{
 }
 
 
-button{
+button {
     padding: 16px;
     font-weight: 700;
     border: none;
@@ -84,7 +84,7 @@ button{
     cursor: pointer;
 }
 
-.botao-reset{
+.botao-reset {
     padding: 16px;
     font-weight: 700;
     border: none;
@@ -97,32 +97,32 @@ button{
     cursor: pointer;
 }
 
-select#setor{
+select#setor {
     border: none;
 }
 
-button:hover{
+button:hover {
     padding: 18px;
     font-size: 15px;
     transition: 0.8s;
 }
 
-.tempo{
+.tempo {
     flex-wrap: wrap;
 }
 
-.sigCanvas{
-    width: 100%;
+.signature-container{
+    margin: 0 auto;
 }
 
 #conformity,
-#nonconformity{
+#nonconformity {
     height: 20px;
     width: 20px;
 }
 
 #conformity:hover,
-#nonconformity:hover{
+#nonconformity:hover {
     height: 25px;
     width: 25px;
 }

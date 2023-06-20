@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useForm } from "react-hook-form"
 import "./utia.css"
+import "../responsive.css"
 import Axios from "axios"
 import SignatureCanvas from 'react-signature-canvas'
 
@@ -456,12 +457,14 @@ function UTIA() {
 
                 <label htmlFor="textarea">Assinatura</label>
 
-                <SignatureCanvas
-                    backgroundColor="lightgray"
-                    {...register('assinatura')}
-                    canvasProps={{ width: 950, height: 250, className: 'sigCanvas' }}
-                    ref={sigCanvasRef}
-                />
+                <div className="signature-container">
+                    <SignatureCanvas
+                        backgroundColor="lightgray"
+                        {...register('assinatura')}
+                        canvasProps={{ height: 200, width:400, className: 'sigCanvas' }}
+                        ref={sigCanvasRef}
+                    />
+                </div>
 
                 <button className="botao-reset" onClick={handleClearSignature}>
                     Limpar
