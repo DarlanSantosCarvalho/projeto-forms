@@ -65,30 +65,30 @@ function CTC() {
         }
     }
 
-    function handleClickCompareTimeSala() {
-        const botao = document.getElementById('botao')
-        const mensagemEscondida = document.getElementById('mensagemEscondida')
-        const tempoInicio = currentHour
-        const tempoInicioSala1 = document.getElementById('timeStartSala1').value
-        const tempoInicioSala2 = document.getElementById('timeStartSala2').value
-        const tempoInicioSala3 = document.getElementById('timeStartSala3').value
-        const tempoInicioSala4 = document.getElementById('timeStartSala4').value
-        const tempoInicioCrpa = document.getElementById('timeStartCrpa').value
+    // function handleClickCompareTimeSala() {
+    //     const botao = document.getElementById('botao')
+    //     const mensagemEscondida = document.getElementById('mensagemEscondida')
+    //     const tempoInicio = currentHour
+    //     const tempoInicioSala1 = document.getElementById('timeStartSala1').value
+    //     const tempoInicioSala2 = document.getElementById('timeStartSala2').value
+    //     const tempoInicioSala3 = document.getElementById('timeStartSala3').value
+    //     const tempoInicioSala4 = document.getElementById('timeStartSala4').value
+    //     const tempoInicioCrpa = document.getElementById('timeStartCrpa').value
 
-        if (tempoInicioSala1 > tempoInicio &&
-            tempoInicioSala2 > tempoInicioSala1 &&
-            tempoInicioSala3 > tempoInicioSala2 &&
-            tempoInicioSala4 > tempoInicioSala3 &&
-            tempoInicioCrpa > tempoInicioSala4) {
-            console.log('Correto')
-            botao.style.pointerEvents = 'all'
-            mensagemEscondida.style.display = 'none'
-        } else {
-            console.log('Incorreto')
-            botao.style.pointerEvents = 'none'
-            mensagemEscondida.style.display = 'block'
-        }
-    }
+    //     if (tempoInicioSala1 > tempoInicio &&
+    //         tempoInicioSala2 > tempoInicioSala1 &&
+    //         tempoInicioSala3 > tempoInicioSala2 &&
+    //         tempoInicioSala4 > tempoInicioSala3 &&
+    //         tempoInicioCrpa > tempoInicioSala4) {
+    //         console.log('Correto')
+    //         botao.style.pointerEvents = 'all'
+    //         mensagemEscondida.style.display = 'none'
+    //     } else {
+    //         console.log('Incorreto')
+    //         botao.style.pointerEvents = 'none'
+    //         mensagemEscondida.style.display = 'block'
+    //     }
+    // }
 
     function handleClickCompareTecnico() {
         const mensagemEscondida = document.getElementById('mensagemEscondidaInspetor')
@@ -126,84 +126,67 @@ function CTC() {
 
     const { register, handleSubmit, reset } = useForm();
 
+
     const onSubmit = (e) => {
-        console.log(e);
-        Axios.post("http://localhost:3000/CTC", {
-            tecnicoUm: e.tecnicoUm,
-            tecnicoDois: e.tecnicoDois,
-            timeStartSala1: e.timeStartSala1,
-            timeEndSala1: e.timeEndSala1,
-            timeStartSala2: e.timeStartSala2,
-            timeEndSala2: e.timeEndSala2,
-            timeStartSala3: e.timeStartSala3,
-            timeEndSala3: e.timeEndSala3,
-            timeStartSala4: e.timeStartSala4,
-            timeEndSala4: e.timeEndSala4,
-            timeStartCrpa: e.timeStartCrpa,
-            timeEndCrpa: e.timeEndCrpa,
-            date: currentDataTime,
-            assinatura: signatureData.signature,
-            timeStart: currentHour,
-            timeEnd: e.timeEnd,
-            obs: e.obs,
-            equip1_1: e.equip1_1,
-            equip1_2: e.equip1_2,
-            equip1_3: e.equip1_3,
-            equip1_4: e.equip1_4,
-            equip1_5: e.equip1_5,
-            equip1_6: e.equip1_6, //MONITOR MULTIPARAMETRO
-            equip2_1: e.equip2_1,
-            equip2_2: e.equip2_2,
-            equip2_3: e.equip2_3,
-            equip2_4: e.equip2_4,
-            equip2_5: e.equip2_5,
-            equip2_6: e.equip2_6,
-            equip2_7: e.equip2_7,
-            equip2_8: e.equip2_8, //APARELHO DE ANESTESIA
-            equip3_1: e.equip3_1,
-            equip3_2: e.equip3_2,
-            equip3_3: e.equip3_3,
-            equip3_4: e.equip3_4, //FOCO CIRURGICO
-            equip4_1: e.equip4_1,
-            equip4_2: e.equip4_2,
-            equip4_3: e.equip4_3,
-            equip4_4: e.equip4_4, //MESA CIRÚRGICA
-            equip5_1: e.equip5_1,
-            equip5_2: e.equip5_2,
-            equip5_3: e.equip5_3, //CARDIOVERSOR
-            equip6_1: e.equip6_1,
-            equip6_2: e.equip6_2,
-            equip6_3: e.equip6_3,//BISTURI ELÉTRICO
-            equip7_1: e.equip7_1,
-            equip7_2: e.equip7_2, //ARCO CIRÚRGICO
-            equip8_1: e.equip8_1,
-            equip8_2: e.equip8_2, //ARCO C ZEIHM
-            equip9_1: e.equip9_1,
-            equip9_2: e.equip9_2,
-            equip9_3: e.equip9_3, //MÁQUINA DE CEC
-            equip10_1: e.equip10_1,
-            equip10_2: e.equip10_2,
-            equip10_3: e.equip10_3, //BOMBA DE INFUSÃO
-            equip11_1: e.equip11_1,
-            equip11_2: e.equip11_2, //IDENTIFICAÇÃO DOS EQUIPAMENTOS E INTEGRIDADE FÍSICA
-            equip12_1: e.equip12_1,
-            equip12_2: e.equip12_2,
-            equip12_3: e.equip12_3, //POLÍGRAFO
-            equip13_1: e.equip13_1,
-            equip13_2: e.equip13_2,
-            equip13_3: e.equip13_3, //BOMBA INJETORA DE CONTRASTE
-            equip14_1: e.equip14_1,
-            equip14_2: e.equip14_2,
-            equip14_3: e.equip14_3, //TORRE DE VÍDEO
-        })
-            .then((response) => {
-                console.log(response);
-                window.alert("O formulário foi enviado com sucesso");
-                reset();
+        if (sigCanvasRef.current) {
+            const signatureDataURL = sigCanvasRef.current.toDataURL();
+            const signatureData = { signature: signatureDataURL };
+            console.log(e);
+            event.preventDefault()
+            Axios.post("http://localhost:3000/CTC", {
+                tecnicoUm: e.tecnicoUm,
+                tecnicoDois: e.tecnicoDois,
+                setor: e.setor,
+                date: currentDataTime,
+                assinatura: signatureData.signature,
+                timeStart: currentHour,
+                timeEnd: e.timeEnd,
+                obs: e.obs,
+                equip1_1: e.equip1_1,
+                equip1_2: e.equip1_2,
+                equip1_3: e.equip1_3, //CENTRAL DE MONITORIZAÇÃO
+                equip2_1: e.equip2_1,
+                equip2_2: e.equip2_2,
+                equip2_3: e.equip2_3,
+                equip2_4: e.equip2_4,
+                equip2_5: e.equip2_5,//MONITOR MULTIPARAMETRO
+                equip3_1: e.equip3_1,
+                equip3_2: e.equip3_2,
+                equip3_3: e.equip3_3,
+                equip3_4: e.equip3_4, //VENTILADOR PULMONAR
+                equip4_1: e.equip4_1,
+                equip4_2: e.equip4_2,
+                equip4_3: e.equip4_3,
+                equip4_4: e.equip4_4, //CARDIOVERSOR
+                equip5_1: e.equip5_1,
+                equip5_2: e.equip5_2,
+                equip5_3: e.equip5_3, //BERÇO AQUECIDO
+                equip6_1: e.equip6_1,
+                equip6_2: e.equip6_2,
+                equip6_3: e.equip6_3,
+                equip6_4: e.equip6_4,
+                equip6_5: e.equip6_5, //BALANÇA
+                equip7_1: e.equip7_1,
+                equip7_2: e.equip7_2,
+                equip7_3: e.equip7_3,
+                equip7_4: e.equip7_4, //ELETROCARDIÓGRAFO
+                equip8_1: e.equip8_1,
+                equip8_2: e.equip8_2,
+                equip8_3: e.equip8_3, //SALA DE EQUIPAMENTOS
+                equip9_1: e.equip9_1,
+                equip9_2: e.equip9_2, //TAG's E ETIQUETAS
+                equip10_1: e.equip10_1,
+                equip10_2: e.equip10_2 //BOMBA DE INFUSÃO E SERINGA
             })
-            .catch((error) => {
-                console.log(error);
-            });
+                .then((response) => {
+                    console.log(response);
+                    window.alert("O formulário foi enviado com sucesso");
+                    reset();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     };
 
 
@@ -262,7 +245,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>Sala 1</h3>
                         <label>Horário de início:</label>
-                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartSala1')} id="timeStartSala1" /> <br />
+                        <input type="time"{...register('timeStartSala1')} id="timeStartSala1" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndSala1')} id="timeEndSala1" />
                     </div>
@@ -270,7 +253,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>Sala 2</h3>
                         <label>Horário de início:</label>
-                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartSala2')} id="timeStartSala2" /> <br />
+                        <input type="time"{...register('timeStartSala2')} id="timeStartSala2" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndSala2')} id="timeEndSala2" />
                     </div>
@@ -279,7 +262,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>Sala 3</h3>
                         <label>Horário de início:</label>
-                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartSala3')} id="timeStartSala3" /> <br />
+                        <input type="time"{...register('timeStartSala3')} id="timeStartSala3" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndSala3')} id="timeEndSala3" />
                     </div>
@@ -287,7 +270,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>Sala 4</h3>
                         <label>Horário de início:</label>
-                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartSala4')} id="timeStartSala4" /> <br />
+                        <input type="time"{...register('timeStartSala4')} id="timeStartSala4" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndSala4')} id="timeEndSala4" />
                     </div>
@@ -295,7 +278,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>CRPA</h3>
                         <label>Horário de início:</label>
-                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartCrpa')} id="timeStartCrpa" /> <br />
+                        <input type="time"{...register('timeStartCrpa')} id="timeStartCrpa" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndCrpa')} id="timeEndCrpa" />
                     </div>

@@ -75,50 +75,67 @@ function UTIC() {
     const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = (e) => {
-        console.log(e);
-        Axios.post("http://localhost:3000/UTIC", {
-            tecnicoUm: e.tecnicoUm,
-            tecnicoDois: e.tecnicoDois,
-            setor: e.setor,
-            date: currentDataTime,
-            assinatura: signatureData.signature,
-            timeStart: currentHour,
-            timeEnd: e.timeEnd,
-            obs: e.obs,
-            equip1_1: e.equip1_1,
-            equip1_2: e.equip1_2,
-            equip1_3: e.equip1_3, //CENTRAL DE MONITORIZAÇÃO
-            equip2_1: e.equip2_1,
-            equip2_2: e.equip2_2,
-            equip2_3: e.equip2_3,
-            equip2_4: e.equip2_4,
-            equip2_5: e.equip2_5,//MONITOR MULTIPARAMETRO
-            equip3_1: e.equip3_1,
-            equip3_2: e.equip3_2,
-            equip3_3: e.equip3_3,
-            equip3_4: e.equip3_4, //VENTILADOR PULMONAR
-            equip4_1: e.equip4_1,
-            equip4_2: e.equip4_2,
-            equip4_3: e.equip4_3,
-            equip4_4: e.equip4_4, //CARDIOVERSOR
-            equip5_1: e.equip5_1,
-            equip5_2: e.equip5_2,
-            equip5_3: e.equip5_3, //BERÇO AQUECIDO
-            equip6_1: e.equip6_1,
-            equip6_2: e.equip6_2, //TAG's
-            equip7_1: e.equip7_1,
-            equip7_2: e.equip7_2, //BOMBA DE INFUSÃO E SERINGA
-
-        })
-            .then((response) => {
-                console.log(response);
-                window.alert("O formulário foi enviado com sucesso");
-                reset();
+        if (sigCanvasRef.current) {
+            const signatureDataURL = sigCanvasRef.current.toDataURL();
+            const signatureData = { signature: signatureDataURL };
+            console.log(e);
+            event.preventDefault()
+            Axios.post("http://localhost:3000/UTIC", {
+                tecnicoUm: e.tecnicoUm,
+                tecnicoDois: e.tecnicoDois,
+                setor: e.setor,
+                date: currentDataTime,
+                assinatura: signatureData.signature,
+                timeStart: currentHour,
+                timeEnd: e.timeEnd,
+                obs: e.obs,
+                equip1_1: e.equip1_1,
+                equip1_2: e.equip1_2,
+                equip1_3: e.equip1_3, //CENTRAL DE MONITORIZAÇÃO
+                equip2_1: e.equip2_1,
+                equip2_2: e.equip2_2,
+                equip2_3: e.equip2_3,
+                equip2_4: e.equip2_4,
+                equip2_5: e.equip2_5,//MONITOR MULTIPARAMETRO
+                equip3_1: e.equip3_1,
+                equip3_2: e.equip3_2,
+                equip3_3: e.equip3_3,
+                equip3_4: e.equip3_4, //VENTILADOR PULMONAR
+                equip4_1: e.equip4_1,
+                equip4_2: e.equip4_2,
+                equip4_3: e.equip4_3,
+                equip4_4: e.equip4_4, //CARDIOVERSOR
+                equip5_1: e.equip5_1,
+                equip5_2: e.equip5_2,
+                equip5_3: e.equip5_3, //BERÇO AQUECIDO
+                equip6_1: e.equip6_1,
+                equip6_2: e.equip6_2,
+                equip6_3: e.equip6_3,
+                equip6_4: e.equip6_4,
+                equip6_5: e.equip6_5, //BALANÇA
+                equip7_1: e.equip7_1,
+                equip7_2: e.equip7_2,
+                equip7_3: e.equip7_3,
+                equip7_4: e.equip7_4, //ELETROCARDIÓGRAFO
+                equip8_1: e.equip8_1,
+                equip8_2: e.equip8_2,
+                equip8_3: e.equip8_3, //SALA DE EQUIPAMENTOS
+                equip9_1: e.equip9_1,
+                equip9_2: e.equip9_2, //TAG's E ETIQUETAS
+                equip10_1: e.equip10_1,
+                equip10_2: e.equip10_2 //BOMBA DE INFUSÃO E SERINGA
             })
-            .catch((error) => {
-                console.log(error);
-            });
+                .then((response) => {
+                    console.log(response);
+                    window.alert("O formulário foi enviado com sucesso");
+                    reset();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
     };
+
 
 
     return (
