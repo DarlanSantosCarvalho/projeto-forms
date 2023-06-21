@@ -3,8 +3,13 @@ import { useForm } from "react-hook-form"
 import "./utineo.css"
 import Axios from "axios"
 import SignatureCanvas from 'react-signature-canvas'
+import moment from 'moment';
 
 function UTINEO() {
+
+    const currentDataTime = moment().format('DD/MM/YYYY')
+
+    const currentHour = moment().format('HH:mm')
 
     const checkButton = () => {
         const mensagemEscondidaConformidade = document.getElementById('mensagemEscondidaConformidade')
@@ -33,7 +38,7 @@ function UTINEO() {
 
     function handleClickCompareTime() {
         const mensagemEscondida = document.getElementById('mensagemEscondida')
-        const tempoInicio = document.getElementById('timeStart').value
+        const tempoInicio = currentHour
         const tempoFim = document.getElementById('timeEnd').value
         const botao = document.getElementById('botao')
 
@@ -73,11 +78,11 @@ function UTINEO() {
             tecnicoUm: e.tecnicoUm,
             tecnicoDois: e.tecnicoDois,
             setor: e.setor,
-            date: e.date,
-            timeStart: e.timeStart,
+            date: currentDataTime,
+            assinatura: signatureData.signature,
+            timeStart: currentHour,
             timeEnd: e.timeEnd,
             obs: e.obs,
-            assinatura: e.assinatura,
             equip1_1: e.equip1_1,
             equip1_2: e.equip1_2,
             equip1_3: e.equip1_3, //CENTRAL DE MONITORIZAÇÃO
@@ -171,10 +176,8 @@ function UTINEO() {
 
                 <div className="tempo">
                     <label>Data:</label>
-                    <input type="date" {...register('date')} id="date" />
-                    <label>Horário de início:</label>
-                    <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" />
-                    <label>Horário de saída:</label>
+                    <span><strong>{currentDataTime}</strong></span>
+                    <label>Horário de início: <strong>{currentHour}</strong></label>                    <label>Horário de saída:</label>
                     <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                 </div>
             </div>
@@ -458,20 +461,18 @@ function UTINEO() {
 
 
                 <label htmlFor="textarea">Assinatura</label>
-
-                <fieldset className="assinatura">
+                <div className="signature-container">
                     <SignatureCanvas
                         backgroundColor="lightgray"
                         {...register('assinatura')}
-                        canvasProps={{ width: 950, height: 250, className: 'sigCanvas' }}
+                        canvasProps={{ height: 200, width: 400, className: 'sigCanvas' }}
                         ref={sigCanvasRef}
                     />
-                </fieldset>
+                </div>
 
                 <button className="botao-reset" onClick={handleClearSignature}>
                     Limpar
                 </button>
-
 
             </section>
             <button id='botao' type='submit'>Enviar</button>

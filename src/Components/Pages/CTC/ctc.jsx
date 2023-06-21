@@ -4,11 +4,16 @@ import "./ctc.css"
 import "../responsive.css"
 import Axios from "axios"
 import SignatureCanvas from 'react-signature-canvas'
+import moment from 'moment';
 
 function CTC() {
     useEffect(() => {
         handleClickGetDate();
     }, []);
+
+    const currentDataTime = moment().format('DD/MM/YYYY')
+
+    const currentHour = moment().format('HH:mm')
 
     const sigCanvasRef = useRef(null);
 
@@ -24,7 +29,6 @@ function CTC() {
         const sexta = document.querySelector('.sexta')
         const date = new Date();
         const today = date.getDay();
-        console.log(today);
 
         if (today === 4) {
             quintas.forEach(quinta => {
@@ -46,17 +50,43 @@ function CTC() {
 
     function handleClickCompareTime() {
         const mensagemEscondida = document.getElementById('mensagemEscondida')
-        const tempoInicio = document.getElementById('timeStart').value
+        const tempoInicio = currentHour
         const tempoFim = document.getElementById('timeEnd').value
         const botao = document.getElementById('botao')
 
-        if (tempoFim < tempoInicio || tempoFim == tempoInicio) {
-            botao.style.pointerEvents = 'none'
-            mensagemEscondida.style.display = 'block'
-        } else {
+        if (tempoFim > tempoInicio) {
             console.log('Tudo certo')
             botao.style.pointerEvents = 'all'
             mensagemEscondida.style.display = 'none'
+        } else {
+            botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
+            console.log('Errado')
+        }
+    }
+
+    function handleClickCompareTimeSala() {
+        const botao = document.getElementById('botao')
+        const mensagemEscondida = document.getElementById('mensagemEscondida')
+        const tempoInicio = currentHour
+        const tempoInicioSala1 = document.getElementById('timeStartSala1').value
+        const tempoInicioSala2 = document.getElementById('timeStartSala2').value
+        const tempoInicioSala3 = document.getElementById('timeStartSala3').value
+        const tempoInicioSala4 = document.getElementById('timeStartSala4').value
+        const tempoInicioCrpa = document.getElementById('timeStartCrpa').value
+
+        if (tempoInicioSala1 > tempoInicio &&
+            tempoInicioSala2 > tempoInicioSala1 &&
+            tempoInicioSala3 > tempoInicioSala2 &&
+            tempoInicioSala4 > tempoInicioSala3 &&
+            tempoInicioCrpa > tempoInicioSala4) {
+            console.log('Correto')
+            botao.style.pointerEvents = 'all'
+            mensagemEscondida.style.display = 'none'
+        } else {
+            console.log('Incorreto')
+            botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
         }
     }
 
@@ -111,12 +141,11 @@ function CTC() {
             timeEndSala4: e.timeEndSala4,
             timeStartCrpa: e.timeStartCrpa,
             timeEndCrpa: e.timeEndCrpa,
-            setor: e.setor,
-            date: e.date,
-            timeStart: e.timeStart,
+            date: currentDataTime,
+            assinatura: signatureData.signature,
+            timeStart: currentHour,
             timeEnd: e.timeEnd,
             obs: e.obs,
-            assinatura: e.assinatura,
             equip1_1: e.equip1_1,
             equip1_2: e.equip1_2,
             equip1_3: e.equip1_3,
@@ -224,10 +253,8 @@ function CTC() {
 
                 <div className="tempo">
                     <label>Data:</label>
-                    <input type="date" {...register('date')} id="date" />
-                    <label>Horário de início:</label>
-                    <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" />
-                    <label>Horário de saída:</label>
+                    <span><strong>{currentDataTime}</strong></span>
+                    <label>Horário de início: <strong>{currentHour}</strong></label><label>Horário de saída:</label>
                     <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                 </div>
 
@@ -235,7 +262,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>Sala 1</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartSala1')} id="timeStartSala1" /> <br />
+                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartSala1')} id="timeStartSala1" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndSala1')} id="timeEndSala1" />
                     </div>
@@ -243,7 +270,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>Sala 2</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartSala2')} id="timeStartSala2" /> <br />
+                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartSala2')} id="timeStartSala2" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndSala2')} id="timeEndSala2" />
                     </div>
@@ -252,7 +279,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>Sala 3</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartSala3')} id="timeStartSala3" /> <br />
+                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartSala3')} id="timeStartSala3" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndSala3')} id="timeEndSala3" />
                     </div>
@@ -260,7 +287,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>Sala 4</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartSala4')} id="timeStartSala4" /> <br />
+                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartSala4')} id="timeStartSala4" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndSala4')} id="timeEndSala4" />
                     </div>
@@ -268,7 +295,7 @@ function CTC() {
                     <div className='salas'>
                         <h3>CRPA</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartCrpa')} id="timeStartCrpa" /> <br />
+                        <input onInput={handleClickCompareTimeSala} type="time"{...register('timeStartCrpa')} id="timeStartCrpa" /> <br />
                         <label>Horário de saída:</label>
                         <input type="time" {...register('timeEndCrpa')} id="timeEndCrpa" />
                     </div>
@@ -659,14 +686,14 @@ function CTC() {
 
 
                     <label htmlFor="textarea">Assinatura</label>
-                    <fieldset className="assinatura">
+                    <div className="signature-container">
                         <SignatureCanvas
                             backgroundColor="lightgray"
                             {...register('assinatura')}
-                            canvasProps={{ width: 950, height: 250, className: 'sigCanvas' }}
+                            canvasProps={{ height: 200, width: 400, className: 'sigCanvas' }}
                             ref={sigCanvasRef}
                         />
-                    </fieldset>
+                    </div>
 
                     <button className="botao-reset" onClick={handleClearSignature}>
                         Limpar

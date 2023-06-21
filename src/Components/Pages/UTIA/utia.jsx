@@ -4,8 +4,14 @@ import "./utia.css"
 import "../responsive.css"
 import Axios from "axios"
 import SignatureCanvas from 'react-signature-canvas'
+import moment from 'moment';
 
 function UTIA() {
+
+    const currentDataTime = moment().format('DD/MM/YYYY')
+
+    const currentHour = moment().format('HH:mm')
+
 
     const checkButton = () => {
         const mensagemEscondidaConformidade = document.getElementById('mensagemEscondidaConformidade')
@@ -34,7 +40,7 @@ function UTIA() {
 
     function handleClickCompareTime() {
         const mensagemEscondida = document.getElementById('mensagemEscondida')
-        const tempoInicio = document.getElementById('timeStart').value
+        const tempoInicio = currentHour
         const tempoFim = document.getElementById('timeEnd').value
         const botao = document.getElementById('botao')
 
@@ -78,9 +84,9 @@ function UTIA() {
                 tecnicoUm: e.tecnicoUm,
                 tecnicoDois: e.tecnicoDois,
                 setor: e.setor,
-                date: e.date,
+                date: currentDataTime,
                 assinatura: signatureData.signature,
-                timeStart: e.timeStart,
+                timeStart: currentHour,
                 timeEnd: e.timeEnd,
                 obs: e.obs,
                 equip1_1: e.equip1_1,
@@ -168,16 +174,14 @@ function UTIA() {
 
                 <div className="setor">
                     <label for="setor">Setor:</label>
-                    <select id="setor" {...register('setor')} name="setor">
-                        <option value="UTI Pediatria A">UTI Pediatria A</option>
-                    </select>
+                    <span value="UTI PEDIATRIA A" id="setor" {...register('setor')} name="setor"><strong>UTI PEDIATRIA A</strong></span>
+
                 </div>
 
                 <div className="tempo">
                     <label>Data:</label>
-                    <input type="date" {...register('date')} id="date" placeholder='Date' />
-                    <label>Horário de início:</label>
-                    <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" name='timeStart' />
+                    <span><strong>{currentDataTime}</strong></span>
+                    <label>Horário de início: <strong>{currentHour}</strong></label>
                     <label>Horário de saída:</label>
                     <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" name='timeEnd' />
                 </div>
@@ -461,7 +465,7 @@ function UTIA() {
                     <SignatureCanvas
                         backgroundColor="lightgray"
                         {...register('assinatura')}
-                        canvasProps={{ height: 200, width:400, className: 'sigCanvas' }}
+                        canvasProps={{ height: 200, width: 400, className: 'sigCanvas' }}
                         ref={sigCanvasRef}
                     />
                 </div>
