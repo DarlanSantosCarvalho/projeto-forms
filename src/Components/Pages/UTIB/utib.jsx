@@ -434,7 +434,7 @@ function UTIB() {
 
                 <h2>BOMBA DE INFUSÃO E SERINGA</h2>
 
-                <div className="equipment-1" onMouseLeave={checkButton}>
+                <div className="equipment-1" onInput={checkButton}>
 
                     <p>VERIFICAR SE A BOMBA ESTÁ CONECTADA A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip10_1')} value="Conforme" id="conformity" />

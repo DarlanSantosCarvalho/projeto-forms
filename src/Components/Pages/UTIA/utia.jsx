@@ -7,30 +7,36 @@ import SignatureCanvas from 'react-signature-canvas'
 import moment from 'moment';
 
 function UTIA() {
-
     const currentDataTime = moment().format('DD/MM/YYYY')
 
     const currentHour = moment().format('HH:mm')
 
 
     const checkButton = () => {
-        const mensagemEscondidaConformidade = document.getElementById('mensagemEscondidaConformidade')
-        const botao = document.getElementById('botao')
-        var conformidades = document.querySelectorAll('input[type="radio"]')
+        const mensagemEscondidaConformidade = document.getElementById('mensagemEscondidaConformidade');
+        const botao = document.getElementById('botao');
+        const conformidades = document.querySelectorAll('input[type="radio"]');
+
+        let todosMarcados = true;
 
         conformidades.forEach(function (conformidade) {
-            if (conformidade.checked) {
-                mensagemEscondidaConformidade.style.display = 'none'
-                botao.style.pointerEvents = 'all'
-            } else {
-                mensagemEscondidaConformidade.style.display = 'block'
-                botao.style.pointerEvents = 'none'
+            if (!conformidade.checked) {
+                todosMarcados = false;
             }
         });
-    }
+
+        if (todosMarcados) {
+            mensagemEscondidaConformidade.style.display = 'none';
+            botao.style.pointerEvents = 'all';
+            console.log("Tudo certo checkButton");
+        } else {
+            mensagemEscondidaConformidade.style.display = 'block';
+            botao.style.pointerEvents = 'none';
+            console.log("Incorreto checkButton");
+        }
+    };
 
     const sigCanvasRef = useRef(null);
-
     const handleClearSignature = (event) => {
         event.preventDefault();
         if (sigCanvasRef.current) {
@@ -187,7 +193,7 @@ function UTIA() {
                 </div>
             </div>
 
-            <section className="equipments">
+            <section onTouchEnd={checkButton} className="equipments">
 
                 <h2>CENTRAL DE MONITORIZAÇÃO</h2>
 
@@ -434,7 +440,7 @@ function UTIA() {
 
                 <h2>BOMBA DE INFUSÃO E SERINGA</h2>
 
-                <div className="equipment-1" onMouseLeave={checkButton}>
+                <div className="equipment-1">
 
                     <p>VERIFICAR SE A BOMBA ESTÁ CONECTADA A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip10_1')} value="Conforme" id="conformity" />
@@ -473,9 +479,8 @@ function UTIA() {
                 <button className="botao-reset" onClick={handleClearSignature}>
                     Limpar
                 </button>
-
-
             </section>
+
             <button id='botao' type='submit'>Enviar</button>
             <h2 id='mensagemEscondida'>Corrija o horário para enviar a inspeção</h2>
             <h2 id='mensagemEscondidaInspetor'>Corrija o inspetor para enviar a inspeção</h2>
