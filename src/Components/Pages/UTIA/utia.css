@@ -115,6 +115,11 @@ button:hover {
     margin: 0 auto;
 }
 
+.botao-verify{
+    color: red;
+    background-color: white;
+}
+
 #conformity,
 #nonconformity {
     height: 20px;

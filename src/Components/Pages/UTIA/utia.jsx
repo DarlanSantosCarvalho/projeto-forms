@@ -1,40 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useForm } from "react-hook-form"
 import "./utia.css"
 import "../responsive.css"
 import Axios from "axios"
-import SignatureCanvas from 'react-signature-canvas'
-import moment from 'moment';
+import SignatureCanvas from "react-signature-canvas"
+import moment from "moment";
+import {yupResolver} from "@hookform/resolvers"
+import {} from "yup"
+import { object } from 'zod';
 
 function UTIA() {
     const currentDataTime = moment().format('DD/MM/YYYY')
 
-    const currentHour = moment().format('HH:mm')
-
-
-    const checkButton = () => {
-        const mensagemEscondidaConformidade = document.getElementById('mensagemEscondidaConformidade');
-        const botao = document.getElementById('botao');
-        const conformidades = document.querySelectorAll('input[type="radio"]');
-
-        let todosMarcados = true;
-
-        conformidades.forEach(function (conformidade) {
-            if (!conformidade.checked) {
-                todosMarcados = false;
-            }
-        });
-
-        if (todosMarcados) {
-            mensagemEscondidaConformidade.style.display = 'none';
-            botao.style.pointerEvents = 'all';
-            console.log("Tudo certo checkButton");
-        } else {
-            mensagemEscondidaConformidade.style.display = 'block';
-            botao.style.pointerEvents = 'none';
-            console.log("Incorreto checkButton");
-        }
-    };
+    const currentHour = moment().format('HH:mm')  
 
     const sigCanvasRef = useRef(null);
     const handleClearSignature = (event) => {
@@ -193,27 +171,26 @@ function UTIA() {
                 </div>
             </div>
 
-            <section onTouchEnd={checkButton} className="equipments">
-
+            <section className="equipments">
                 <h2>CENTRAL DE MONITORIZAÇÃO</h2>
 
                 <div className="equipment-1">
                     <p>VERIFICAR A INTEGRIDADE DO MONITOR DA CENTRAL</p>
-                    <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" name='equip1_1' />
+                    <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity-1" name='equip1_1' />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip1_1')} value="Inconforme" id="nonconformity" name='equip1_1' />
+                    <input type="radio" {...register('equip1_1')} value="Inconforme" id="conformity-1" name='equip1_1' />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR SE TODOS OS LEITOS ESTÃO APARECENDO NO MONITOR NA ORDEM CORRETA</p>
                     <input type="radio" {...register('equip1_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip1_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM  SE HOUVE ALGUMA INCONSISTÊNCIA NO FUNCIONAMENTO DA CENTRAL</p>
                     <input type="radio" {...register('equip1_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip1_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
@@ -225,31 +202,31 @@ function UTIA() {
                     <p>VERIFICAR SE O MONITOR ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip2_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR SE OS MÓDULOS ESTÃO CONECTADOS DE FORMA CORRETA</p>
                     <input type="radio" {...register('equip2_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR SE TODOS OS SENSORES CONECTADOS AOS PACIENTES ESTÃO APARECENDO NA TELA COM SEUS RESPECTIVOS GRÁFICOS</p>
                     <input type="radio" {...register('equip2_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM SE EXISTE SENSORES DE OXIMETRIA OU ECG COM DEFEITO</p>
                     <input type="radio" {...register('equip2_4')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_4')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_4')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM SE HOUVE ALGUMA ANORMALIDADE NO FUNCIONAMENTO DO MONITOR</p>
                     <input type="radio" {...register('equip2_5')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_5')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_5')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
@@ -261,25 +238,25 @@ function UTIA() {
                     <p>VERIFICAR SE O VENTILADOR ESTÁ CONECTADO CORRETAMENTE NA REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip3_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip3_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip3_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR A EXISTÊNCIA DE MANCHAS OU INCONSISTÊNCIAS NO DISPLAY</p>
                     <input type="radio" {...register('equip3_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip3_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip3_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR SE A TAXA DE O2 PROGRAMADA É COMPÁTIVEL COM A MENSURADA NO DISPLAY</p>
                     <input type="radio" {...register('equip3_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip3_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip3_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE FISIOTERAPIA SE HOUVE ALGUMA ANORMALIDADE NO FUNCIONAMENTO DO VENTILADOR</p>
                     <input type="radio" {...register('equip3_4')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip3_4')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip3_4')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
@@ -290,25 +267,25 @@ function UTIA() {
                     <p>VERIFICAR SE O EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip4_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip4_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip4_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR INTEGRIDADE DAS PÁS E CABOS</p>
                     <input type="radio" {...register('equip4_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip4_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip4_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR INTEGRIDADE DO DISPLAY</p>
                     <input type="radio" {...register('equip4_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip4_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip4_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>REALIZAR TESTE FUNCIONAL DO EQUIPAMENTO</p>
                     <input type="radio" {...register('equip4_4')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip4_4')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip4_4')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
@@ -319,19 +296,19 @@ function UTIA() {
                     <p>VERIFICAR INTEGRIDADE DA BASE DO EQUIPAMENTO</p>
                     <input type="radio" {...register('equip5_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip5_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip5_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR INTEGRIDADE DO DISPLAY</p>
                     <input type="radio" {...register('equip5_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip5_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip5_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM SE HOUVE ALGUMA INCONSISTÊNCIA NO FUNCIONAMENTO DO BERÇO AQUECIDO</p>
                     <input type="radio" {...register('equip5_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip5_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip5_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
@@ -342,31 +319,31 @@ function UTIA() {
                     <p>VERIFICAR NIVELAMENTO</p>
                     <input type="radio" {...register('equip6_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip6_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip6_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR INTEGRIDADE DA CARCAÇA DA BALANÇA</p>
                     <input type="radio" {...register('equip6_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip6_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip6_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR INTEGRIDADE DA FONTE DE ALIMENTAÇÃO</p>
                     <input type="radio" {...register('equip6_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip6_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip6_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR SE AS INFORMAÇÕES ESTÃO LEGÍVEIS</p>
                     <input type="radio" {...register('equip6_4')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip6_4')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip6_4')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR INTEGRIDADE DO DISPLAY</p>
                     <input type="radio" {...register('equip6_5')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip6_5')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip6_5')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
@@ -377,25 +354,25 @@ function UTIA() {
                     <p>VERIFICAR SE EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip7_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip7_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip7_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR SE AS INFORMAÇÕES ESTÃO LEGÍVEIS</p>
                     <input type="radio" {...register('equip7_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip7_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip7_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR INTEGRIDADE DO ROLETE DO PAPEL</p>
                     <input type="radio" {...register('equip7_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip7_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip7_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR CONDIÇÕES DA TAMPA DO COMPARTIMENTO DO PAPEL</p>
                     <input type="radio" {...register('equip7_4')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip7_4')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip7_4')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
@@ -406,19 +383,19 @@ function UTIA() {
                     <p>VERIFICAR INTEGRIDADE DOS EQUIPAMENTOS QUE ENCONTRAM-SE NA SALA</p>
                     <input type="radio" {...register('equip8_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip8_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip8_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>REALIZAR TESTE FUNCIONAL DOS EQUIPAMENTOS</p>
                     <input type="radio" {...register('equip8_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip8_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip8_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>REALIZAR TESTE FUNCIONAL EM TODOS OS LARINGOSCÓPIOS</p>
                     <input type="radio" {...register('equip8_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip8_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip8_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
@@ -428,13 +405,13 @@ function UTIA() {
                     <p>VERIFICAR SE TODOS OS EQUIPAMENTOS ESTÃO COM SUAS RESPECTIVAS TAG's</p>
                     <input type="radio" {...register('equip9_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip9_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip9_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR SE HÁ ALGUMA ETIQUETA DE PREVENTIVA VENCIDA</p>
                     <input type="radio" {...register('equip9_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip9_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip9_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
@@ -445,18 +422,18 @@ function UTIA() {
                     <p>VERIFICAR SE A BOMBA ESTÁ CONECTADA A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip10_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip10_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip10_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM SE HOUVE ALGUMA ANORMALIDADE NO FUNCIONAMENTO DAS BOMBAS</p>
                     <input type="radio" {...register('equip10_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip10_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip10_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
                 </div>
 
                 <h2>OBSERVAÇÕES</h2>
-                <textarea {...register('obs')} id="obs" cols="30" rows="10"></textarea>
+                <textarea {...register('obs')} id="obs" cols="30" rows="10" placeholder='Caso não haja observações, digite "Ok"'></textarea>
 
                 <label htmlFor="file">Anexe Arquivo</label>
                 <input type="file" />
