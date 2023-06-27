@@ -2,9 +2,14 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors")
+const moment = require('moment')
+
+const dataAtual = moment().format('YYYY-MM-DD')
+
+const horaAtual = moment().format('HH:mm')
 
 
-const pediatriaA = mysql.createPool({ 
+const pediatriaA = mysql.createPool({
     host: "localhost",
     user: "root",
     password: "Escanor2200@",
@@ -48,9 +53,9 @@ app.use(cors())
 app.post("/UTIA", (req, res) => {
     const inspetorUm = req.body.tecnicoUm;
     const inspetorDois = req.body.tecnicoDois
-    const date = req.body.date;
+    const date = dataAtual;
     const setor = req.body.setor;
-    const timeStart = req.body.timeStart;
+    const timeStart = horaAtual;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura;
@@ -93,7 +98,7 @@ app.post("/UTIA", (req, res) => {
 
 
 
-    pediatriaA.query("SELECT * FROM utia WHERE data = ?", [date], (err, result) => {
+    pediatriaA.query("SELECT * FROM utia WHERE data = ?", [dataAtual], (err, result) => {
         if (err) {
             res.send(err);
             return;
@@ -119,9 +124,9 @@ app.post("/UTIA", (req, res) => {
 app.post("/UTIB", (req, res) => {
     const inspetorUm = req.body.tecnicoUm;
     const inspetorDois = req.body.tecnicoDois
-    const date = req.body.date;
+    const date = dataAtual;
     const setor = req.body.setor;
-    const timeStart = req.body.timeStart;
+    const timeStart = horaAtual;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura
@@ -164,7 +169,7 @@ app.post("/UTIB", (req, res) => {
 
 
 
-    pediatriaB.query("SELECT * FROM utib WHERE data = ?", [date], (err, result) => {
+    pediatriaB.query("SELECT * FROM utib WHERE data = ?", [dataAtual], (err, result) => {
         if (err) {
             res.send(err);
             return;
@@ -190,9 +195,9 @@ app.post("/UTIB", (req, res) => {
 app.post("/UTIC", (req, res) => {
     const inspetorUm = req.body.tecnicoUm;
     const inspetorDois = req.body.tecnicoDois
-    const date = req.body.date;
+    const date = dataAtual;
     const setor = req.body.setor;
-    const timeStart = req.body.timeStart;
+    const timeStart = horaAtual;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura
@@ -223,7 +228,7 @@ app.post("/UTIC", (req, res) => {
 
 
 
-    pediatriaC.query("SELECT * FROM utic WHERE data = ?", [date], (err, result) => {
+    pediatriaC.query("SELECT * FROM utic WHERE data = ?", [dataAtual], (err, result) => {
         if (err) {
             res.send(err);
             return;
@@ -248,9 +253,9 @@ app.post("/UTIC", (req, res) => {
 app.post("/UTINEO", (req, res) => {
     const inspetorUm = req.body.tecnicoUm;
     const inspetorDois = req.body.tecnicoDois
-    const date = req.body.date;
+    const date = dataAtual;
     const setor = req.body.setor;
-    const timeStart = req.body.timeStart;
+    const timeStart = horaAtual;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura
@@ -293,7 +298,7 @@ app.post("/UTINEO", (req, res) => {
 
 
 
-    utiNeo.query("SELECT * FROM utineo WHERE data = ?", [date], (err, result) => {
+    utiNeo.query("SELECT * FROM utineo WHERE data = ?", [dataAtual], (err, result) => {
         if (err) {
             res.send(err);
             return;
@@ -327,9 +332,9 @@ app.post("/CTC", (req, res) => {
     const timeEndSala4 = req.body.timeEndSala4;
     const timeStartCrpa = req.body.timeStartCrpa;
     const timeEndCrpa = req.body.timeEndCrpa;
+    const date = dataAtual;
     const setor = req.body.setor;
-    const date = req.body.date;
-    const timeStart = req.body.timeStart;
+    const timeStart = horaAtual;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura;
@@ -384,7 +389,7 @@ app.post("/CTC", (req, res) => {
     const equip14_3 = req.body.equip14_3;
 
 
-    centroC.query("SELECT * FROM centroc WHERE data = ?", [date], (err, result) => {
+    centroC.query("SELECT * FROM centroc WHERE data = ?", [dataAtual], (err, result) => {
         if (err) {
             res.send(err);
             return;
@@ -392,7 +397,7 @@ app.post("/CTC", (req, res) => {
 
         if (result.length === 0) {
             centroC.query("INSERT INTO centroc (inspetor, inspetor2, data, setor, timeStart, timeEnd, timeStartSala1, timeEndSala1, timeStartSala2, timeEndSala2, timeStartSala3, timeEndSala3, timeStartSala4, timeEndSala4, timeStartCrpa, timeEndCrpa, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6, equip2_1, equip2_2, equip2_3, equip2_4, equip2_5, equip2_6, equip2_7, equip2_8, equip3_1, equip3_2, equip3_3, equip3_4, equip4_1, equip4_2, equip4_3, equip4_4, equip5_1, equip5_2, equip5_3, equip6_1, equip6_2, equip6_3, equip7_1, equip7_2, equip8_1, equip8_2, equip9_1, equip9_2, equip9_3, equip10_1, equip10_2, equip10_3, equip11_1, equip11_2, equip12_1, equip12_2, equip12_3, equip13_1, equip13_2, equip13_3, equip14_1, equip14_2, equip14_3, Obs, Assinatura) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                [inspetorUm, inspetorDois, date, setor, timeStart, timeEnd, timeStartSala1, timeEndSala1, timeStartSala2, timeEndSala2, timeStartSala3, timeEndSala3, timeStartSala4, timeEndSala4, timeStartCrpa, timeEndCrpa, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6, equip2_1, equip2_2, equip2_3, equip2_4, equip2_5, equip2_6, equip2_7, equip2_8, equip3_1, equip3_2, equip3_3, equip3_4, equip4_1, equip4_2, equip4_3, equip4_4, equip5_1, equip5_2, equip5_3, equip6_1, equip6_2, equip6_3, equip7_1, equip7_2, equip8_1, equip8_2, equip9_1, equip9_2, equip9_3, equip10_1, equip10_2, equip10_3, equip11_1, equip11_2, equip12_1, equip12_2, equip12_3, equip13_1, equip13_2, equip13_3, equip14_1, equip14_2,equip14_3, obs, assinatura],
+                [inspetorUm, inspetorDois, date, setor, timeStart, timeEnd, timeStartSala1, timeEndSala1, timeStartSala2, timeEndSala2, timeStartSala3, timeEndSala3, timeStartSala4, timeEndSala4, timeStartCrpa, timeEndCrpa, equip1_1, equip1_2, equip1_3, equip1_4, equip1_5, equip1_6, equip2_1, equip2_2, equip2_3, equip2_4, equip2_5, equip2_6, equip2_7, equip2_8, equip3_1, equip3_2, equip3_3, equip3_4, equip4_1, equip4_2, equip4_3, equip4_4, equip5_1, equip5_2, equip5_3, equip6_1, equip6_2, equip6_3, equip7_1, equip7_2, equip8_1, equip8_2, equip9_1, equip9_2, equip9_3, equip10_1, equip10_2, equip10_3, equip11_1, equip11_2, equip12_1, equip12_2, equip12_3, equip13_1, equip13_2, equip13_3, equip14_1, equip14_2, equip14_3, obs, assinatura],
                 (err) => {
                     if (err) {
                         res.send(err);

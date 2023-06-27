@@ -1,20 +1,38 @@
 import React, { useRef } from 'react';
-import { useForm } from "react-hook-form"
-import "./utia.css"
-import "../responsive.css"
-import Axios from "axios"
-import SignatureCanvas from "react-signature-canvas"
+import { useForm } from "react-hook-form";
+import "./utia.css";
+import "../responsive.css";
+import Axios from "axios";
+import SignatureCanvas from "react-signature-canvas";
 import moment from "moment";
-import {yupResolver} from "@hookform/resolvers"
-import {} from "yup"
-import { object } from 'zod';
 
 function UTIA() {
-    const currentDataTime = moment().format('DD/MM/YYYY')
+    useEffect(() => {
+        checkButton(); 
+    }, []);
 
-    const currentHour = moment().format('HH:mm')  
+    const checkButton = () => {
+        const mensagemEscondidaConformidade = document.getElementById('mensagemEscondidaConformidade');
+        const botao = document.getElementById('botao');
+        const conformidades = document.querySelectorAll('input[id="conformity"]:checked').length;
+
+        if (conformidades.checked) {
+            mensagemEscondidaConformidade.style.display = "none";
+            botao.style.pointerEvents = 'all';
+            console.log("Tudo certo checkButton");
+        } else {
+            mensagemEscondidaConformidade.style.display = 'block';
+            botao.style.pointerEvents = 'none';
+            console.log("Incorreto checkButton");
+        }
+    };
+
+    const currentDataTime = moment().format('DD/MM/YYYY');
+
+    const currentHour = moment().format('HH:mm');
 
     const sigCanvasRef = useRef(null);
+
     const handleClearSignature = (event) => {
         event.preventDefault();
         if (sigCanvasRef.current) {
@@ -112,7 +130,7 @@ function UTIA() {
                 .then((response) => {
                     console.log(response);
                     window.alert("O formulário foi enviado com sucesso");
-                    reset();
+                    // reset();
                 })
                 .catch((error) => {
                     console.log(error);
@@ -158,8 +176,9 @@ function UTIA() {
 
                 <div className="setor">
                     <label for="setor">Setor:</label>
-                    <span value="UTI PEDIATRIA A" id="setor" {...register('setor')} name="setor"><strong>UTI PEDIATRIA A</strong></span>
-
+                    <select id="setor" {...register('setor')} name="setor">
+                        <option value="UTI Pediatria A">UTI Pediatria A</option>
+                    </select>
                 </div>
 
                 <div className="tempo">
@@ -174,11 +193,11 @@ function UTIA() {
             <section className="equipments">
                 <h2>CENTRAL DE MONITORIZAÇÃO</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
                     <p>VERIFICAR A INTEGRIDADE DO MONITOR DA CENTRAL</p>
-                    <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity-1" name='equip1_1' />
+                    <input type="radio" {...register('equip1_1', { required: true })} value="Conforme" id="conformity" name='equip1_1' />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip1_1')} value="Inconforme" id="conformity-1" name='equip1_1' />
+                    <input type="radio" {...register('equip1_1', { required: true })} value="Inconforme" id="conformity" name='equip1_1' />
                     <label for="">Não conforme</label>
 
                     <p>VERIFICAR SE TODOS OS LEITOS ESTÃO APARECENDO NO MONITOR NA ORDEM CORRETA</p>
@@ -197,7 +216,7 @@ function UTIA() {
 
                 <h2>MONITOR MULTIPARAMETRO/TRANSPORTE</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE O MONITOR ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip2_1')} value="Conforme" id="conformity" />
@@ -233,7 +252,7 @@ function UTIA() {
 
                 <h2>VENTILADOR PULMONAR/TRANSPORTE/BACKUP</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE O VENTILADOR ESTÁ CONECTADO CORRETAMENTE NA REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip3_1')} value="Conforme" id="conformity" />
@@ -262,7 +281,7 @@ function UTIA() {
 
                 <h2>CARDIOVERSOR</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE O EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip4_1')} value="Conforme" id="conformity" />
@@ -291,7 +310,7 @@ function UTIA() {
 
                 <h2>BERÇO AQUECIDO</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR INTEGRIDADE DA BASE DO EQUIPAMENTO</p>
                     <input type="radio" {...register('equip5_1')} value="Conforme" id="conformity" />
@@ -314,7 +333,7 @@ function UTIA() {
 
                 <h2>BALANÇA</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR NIVELAMENTO</p>
                     <input type="radio" {...register('equip6_1')} value="Conforme" id="conformity" />
@@ -349,7 +368,7 @@ function UTIA() {
 
                 <h2>ELETROCARDIÓGRAFO</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip7_1')} value="Conforme" id="conformity" />
@@ -378,7 +397,7 @@ function UTIA() {
 
                 <h2>SALA DE EQUIPAMENTOS/ CARRINHO DE EMERGÊNCIA</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR INTEGRIDADE DOS EQUIPAMENTOS QUE ENCONTRAM-SE NA SALA</p>
                     <input type="radio" {...register('equip8_1')} value="Conforme" id="conformity" />
@@ -400,7 +419,7 @@ function UTIA() {
                 </div>
 
                 <h2>VERIFICAÇÃO DE TAG's E ETIQUETAS DE PREVENTIVA</h2>
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE TODOS OS EQUIPAMENTOS ESTÃO COM SUAS RESPECTIVAS TAG's</p>
                     <input type="radio" {...register('equip9_1')} value="Conforme" id="conformity" />
@@ -417,7 +436,7 @@ function UTIA() {
 
                 <h2>BOMBA DE INFUSÃO E SERINGA</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE A BOMBA ESTÁ CONECTADA A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip10_1')} value="Conforme" id="conformity" />

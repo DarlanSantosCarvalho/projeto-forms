@@ -193,7 +193,7 @@ function UTIB() {
 
                 <h2>CENTRAL DE MONITORIZAÇÃO</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
                     <p>VERIFICAR A INTEGRIDADE DO MONITOR DA CENTRAL</p>
                     <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
@@ -216,7 +216,7 @@ function UTIB() {
 
                 <h2>MONITOR MULTIPARAMETRO/TRANSPORTE</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE O MONITOR ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip2_1')} value="Conforme" id="conformity" />
@@ -252,7 +252,7 @@ function UTIB() {
 
                 <h2>VENTILADOR PULMONAR/TRANSPORTE/BACKUP</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE O VENTILADOR ESTÁ CONECTADO CORRETAMENTE NA REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip3_1')} value="Conforme" id="conformity" />
@@ -281,7 +281,7 @@ function UTIB() {
 
                 <h2>CARDIOVERSOR</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
                     <p>VERIFICAR SE O EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip4_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
@@ -309,7 +309,7 @@ function UTIB() {
 
                 <h2>BERÇO AQUECIDO</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR INTEGRIDADE DA BASE DO EQUIPAMENTO</p>
                     <input type="radio" {...register('equip5_1')} value="Conforme" id="conformity" />
@@ -332,7 +332,7 @@ function UTIB() {
 
                 <h2>BALANÇA</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR NIVELAMENTO</p>
                     <input type="radio" {...register('equip6_1')} value="Conforme" id="conformity" />
@@ -367,7 +367,7 @@ function UTIB() {
 
                 <h2>ELETROCARDIÓGRAFO</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
                     <p>VERIFICAR SE EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip7_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
@@ -395,7 +395,7 @@ function UTIB() {
 
                 <h2>SALA DE EQUIPAMENTOS/ CARRINHO DE EMERGÊNCIA</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR INTEGRIDADE DOS EQUIPAMENTOS QUE ENCONTRAM-SE NA SALA</p>
                     <input type="radio" {...register('equip8_1')} value="Conforme" id="conformity" />
@@ -417,7 +417,7 @@ function UTIB() {
                 </div>
 
                 <h2>VERIFICAÇÃO DE TAG's E ETIQUETAS DE PREVENTIVA</h2>
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE TODOS OS EQUIPAMENTOS ESTÃO COM SUAS RESPECTIVAS TAG's</p>
                     <input type="radio" {...register('equip9_1')} value="Conforme" id="conformity" />
@@ -434,7 +434,7 @@ function UTIB() {
 
                 <h2>BOMBA DE INFUSÃO E SERINGA</h2>
 
-                <div className="equipment-1" onInput={checkButton}>
+                <div className="equipment" onInput={checkButton}>
 
                     <p>VERIFICAR SE A BOMBA ESTÁ CONECTADA A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip10_1')} value="Conforme" id="conformity" />

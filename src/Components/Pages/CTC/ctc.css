@@ -19,6 +19,7 @@
 #mensagemEscondida,
 #mensagemEscondidaInspetor,
 #mensagemEscondidaConformidade{
+    margin: 15px;
     color: red;
     display: none;
     text-align: center;

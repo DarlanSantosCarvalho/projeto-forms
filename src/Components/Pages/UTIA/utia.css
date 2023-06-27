@@ -49,13 +49,12 @@ fieldset {
     padding: 20px;
 }
 
-.equipment-1 {
+.equipment {
     margin-top: 40px;
     margin-bottom: 40px;
 }
 
-.equipment-1 p,
-.equipment-2 p {
+.equipment p {
     padding: 15px;
     margin: 10px;
     font-family: "Poppins";
@@ -111,11 +110,11 @@ button:hover {
     flex-wrap: wrap;
 }
 
-.signature-container{
+.signature-container {
     margin: 0 auto;
 }
 
-.botao-verify{
+.botao-verify {
     color: red;
     background-color: white;
 }
