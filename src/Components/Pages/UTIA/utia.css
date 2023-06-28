@@ -38,6 +38,22 @@ body {
     gap: 20px;
 }
 
+.tempo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.error {
+    color: red;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+
 h2 {
     font-family: "Poppins";
     font-weight: 700;
@@ -67,6 +83,10 @@ fieldset {
     align-items: center;
     font-family: "Poppins";
     font-weight: 300;
+}
+
+.sigCanvas{
+    margin: 0 auto;
 }
 
 
