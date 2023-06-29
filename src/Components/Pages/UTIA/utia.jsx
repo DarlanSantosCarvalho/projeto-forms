@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import "./utia.css";
 import "../responsive.css";
@@ -6,7 +6,7 @@ import Axios from "axios";
 import SignatureCanvas from "react-signature-canvas";
 import moment from "moment";
 import { yupResolver } from '@hookform/resolvers/yup';
-import { object, string, mixed } from "yup"
+import { object, string } from "yup";
 
 function UTIA() {
     const schema = object({
@@ -47,7 +47,7 @@ function UTIA() {
         equip10_1: string().required("Preencha uma opção"),
         equip10_2: string().required("Preencha uma opção"),
         obs: string().required("Preencha a observação corretamente"),
-        assinatura: mixed().required("Para enviar é necessária a sua assinatura.")
+        assinatura: string().test('signature', 'Assinatura é obrigatória', (value) => !!value)
     })
 
     const currentDataTime = moment().format('DD/MM/YYYY');
@@ -55,6 +55,7 @@ function UTIA() {
     const currentHour = moment().format('HH:mm');
 
     const sigCanvasRef = useRef(null);
+
 
     const handleClearSignature = (event) => {
         event.preventDefault();
@@ -97,9 +98,8 @@ function UTIA() {
         }
     }
 
-
-    const { register, handleSubmit, reset, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
-
+    const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm({ resolver: yupResolver(schema) });
+    console.log(errors)
     const onSubmit = (e) => {
         if (sigCanvasRef.current) {
             const signatureDataURL = sigCanvasRef.current.toDataURL();
@@ -107,8 +107,8 @@ function UTIA() {
             console.log(e);
             event.preventDefault()
             Axios.post("http://localhost:3000/UTIA", {
-                tecnicoUm: e.tecnicoUm,
-                tecnicoDois: e.tecnicoDois,
+                tecnicoUm: e.inspetorUm,
+                tecnicoDois: e.inspetorDois,
                 setor: e.setor,
                 date: currentDataTime,
                 assinatura: signatureData.signature,
@@ -153,6 +153,7 @@ function UTIA() {
             })
                 .then((response) => {
                     console.log(response);
+                    console.log(signatureData)
                     window.alert("O formulário foi enviado com sucesso");
                     reset();
                 })
@@ -175,7 +176,7 @@ function UTIA() {
 
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select onInput={handleClickCompareTecnico} id="tecnicoUm" {...register('tecnicoUm')} name='tecnicoUm'>
+                    <select onInput={handleClickCompareTecnico} id='tecnicoUm' {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -183,11 +184,12 @@ function UTIA() {
                         <option value="Igor Giovani">Igor Giovani</option>
                         <option value="EngClin">Engenharia Clínica</option>
                     </select>
+                    <br />
                 </div>
 
                 <div className="tecnicoDois">
                     <label for="Técnico executor: ">Técnico executor 2:</label>
-                    <select onInput={handleClickCompareTecnico} id="tecnicoDois" {...register('tecnicoDois')} name='tecnicoDois'>
+                    <select onInput={handleClickCompareTecnico} id='tecnicoDois' {...register('tecnicoDois')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -530,11 +532,11 @@ function UTIA() {
                     <SignatureCanvas
                         backgroundColor="lightgray"
                         {...register('assinatura')}
-                        canvasProps={{ height: 200, width: 500, className: 'sigCanvas' }}
+                        canvasProps={{ className: 'sigCanvas' }}
                         ref={sigCanvasRef}
                     />
                 </div>
-
+                {errors.assinatura && <span className="error">{errors.assinatura.message}</span>}
                 <button className="botao-reset" onClick={handleClearSignature}>
                     Limpar
                 </button>
