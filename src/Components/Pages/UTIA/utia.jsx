@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import "./utia.css";
 import "../responsive.css";
@@ -9,6 +9,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string } from "yup";
 
 function UTIA() {
+    useEffect(() => {
+        handleClickCompareTecnico();
+    }, []);
+
+
     const schema = object({
         timeStart: string().required("Preencha o campo"),
         timeEnd: string().required("Preencha o campo"),
@@ -47,15 +52,15 @@ function UTIA() {
         equip9_2: string().required("Preencha uma opção"),
         equip10_1: string().required("Preencha uma opção"),
         equip10_2: string().required("Preencha uma opção"),
-        obs: string().required("Preencha a observação corretamente"),
-        assinatura: string().test('signature', 'Assinatura é obrigatória', (value) => !!value)
+        obs: string().max(255, "Até 255 caracteres").required("Preencha a observação corretamente"),
+        assinatura: string().required("Para prosseguir, é necessária a sua assinatura")
     })
 
     const currentDataTime = moment().format('DD/MM/YYYY');
 
     const currentHour = moment().format('HH:mm');
 
-    const sigCanvasRef = useRef(null);
+    const sigCanvasRef = useRef();
 
 
     const handleClearSignature = (event) => {
@@ -164,6 +169,10 @@ function UTIA() {
         }
     };
 
+    function handleSignatureChange() {
+        const signature = sigCanvasRef.current.toDataURL();
+        setValue('assinatura', signature);
+    };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -177,7 +186,7 @@ function UTIA() {
 
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select onInput={handleClickCompareTecnico} id='tecnicoUm' {...register('tecnicoUm')}>
+                    <select id='tecnicoUm' {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -190,7 +199,7 @@ function UTIA() {
 
                 <div className="tecnicoDois">
                     <label for="Técnico executor: ">Técnico executor 2:</label>
-                    <select onInput={handleClickCompareTecnico} id='tecnicoDois' {...register('tecnicoDois')}>
+                    <select id='tecnicoDois' {...register('tecnicoDois')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -213,6 +222,7 @@ function UTIA() {
                     <span><strong>{currentDataTime}</strong></span>
                     <label>Horário de início:</label>
                     <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" />
+                    <span className='error'>{errors?.timeStart?.message}</span>
                     <label>Horário de saída:</label>
                     <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" name='timeEnd' />
                     <span className='error'>{errors?.timeEnd?.message}</span>
@@ -536,6 +546,7 @@ function UTIA() {
                         {...register('assinatura')}
                         canvasProps={{ className: 'sigCanvas' }}
                         ref={sigCanvasRef}
+                        onEnd={handleSignatureChange}
                     />
                 </div>
                 {errors.assinatura && <span className="error">{errors.assinatura.message}</span>}
