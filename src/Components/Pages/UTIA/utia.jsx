@@ -9,11 +9,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string } from "yup";
 
 function UTIA() {
-    useEffect(() => {
-        handleClickCompareTecnico();
-    }, []);
-
-
     const schema = object({
         timeStart: string().required("Preencha o campo"),
         timeEnd: string().required("Preencha o campo"),
@@ -113,8 +108,8 @@ function UTIA() {
             console.log(e);
             event.preventDefault()
             Axios.post("http://localhost:3000/UTIA", {
-                tecnicoUm: e.inspetorUm,
-                tecnicoDois: e.inspetorDois,
+                tecnicoUm: e.tecnicoUm,
+                tecnicoDois: e.tecnicoDois,
                 setor: e.setor,
                 date: currentDataTime,
                 assinatura: signatureData.signature,
@@ -186,7 +181,7 @@ function UTIA() {
 
                 <div className="tecnicoUm">
                     <label for="Técnico executor: ">Técnico executor 1:</label>
-                    <select id='tecnicoUm' {...register('tecnicoUm')}>
+                    <select onInput={handleClickCompareTecnico} id='tecnicoUm' {...register('tecnicoUm')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
@@ -199,7 +194,7 @@ function UTIA() {
 
                 <div className="tecnicoDois">
                     <label for="Técnico executor: ">Técnico executor 2:</label>
-                    <select id='tecnicoDois' {...register('tecnicoDois')}>
+                    <select onInput={handleClickCompareTecnico} id='tecnicoDois' {...register('tecnicoDois')}>
                         <option value="NA">Escolher técnico</option>
                         <option value="Marcele Fonseca">Marcele Fonseca</option>
                         <option value="Vitor Torres">Vitor Torres</option>
