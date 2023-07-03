@@ -100,7 +100,6 @@ function UTIA() {
     }
 
     const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm({ resolver: yupResolver(schema) });
-    console.log(errors)
     const onSubmit = (e) => {
         if (sigCanvasRef.current) {
             const signatureDataURL = sigCanvasRef.current.toDataURL();

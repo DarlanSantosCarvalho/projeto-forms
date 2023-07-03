@@ -1,32 +1,44 @@
 import React, { useRef } from 'react';
 import { useForm } from "react-hook-form"
 import "./utic.css"
+import "../responsive.css";
 import Axios from "axios"
 import SignatureCanvas from 'react-signature-canvas'
 import moment from 'moment';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { object, string } from "yup";
 
 function UTIC() {
+    const schema = object({
+        timeStart: string().required("Preencha o campo"),
+        timeEnd: string().required("Preencha o campo"),
+        equip1_1: string().required("Preencha uma opção"),
+        equip1_2: string().required("Preencha uma opção"),
+        equip1_3: string().required("Preencha uma opção"),
+        equip2_1: string().required("Preencha uma opção"),
+        equip2_2: string().required("Preencha uma opção"),
+        equip2_3: string().required("Preencha uma opção"),
+        equip2_4: string().required("Preencha uma opção"),
+        equip2_5: string().required("Preencha uma opção"),
+        equip3_1: string().required("Preencha uma opção"),
+        equip3_2: string().required("Preencha uma opção"),
+        equip3_3: string().required("Preencha uma opção"),
+        equip3_4: string().required("Preencha uma opção"),
+        equip4_1: string().required("Preencha uma opção"),
+        equip4_2: string().required("Preencha uma opção"),
+        equip4_3: string().required("Preencha uma opção"),
+        equip5_1: string().required("Preencha uma opção"),
+        equip5_2: string().required("Preencha uma opção"),
+        equip5_3: string().required("Preencha uma opção"),
+        equip6_1: string().required("Preencha uma opção"),
+        equip6_2: string().required("Preencha uma opção"),
+        equip7_1: string().required("Preencha uma opção"),
+        equip7_2: string().required("Preencha uma opção"),
+        obs: string().max(255, "Até 255 caracteres").required("Preencha a observação corretamente"),
+        assinatura: string().required("Para prosseguir, é necessária a sua assinatura")
+    })
 
     const currentDataTime = moment().format('DD/MM/YYYY')
-
-    const currentHour = moment().format('HH:mm')
-
-    const checkButton = () => {
-        const mensagemEscondidaConformidade = document.getElementById('mensagemEscondidaConformidade')
-        const botao = document.getElementById('botao')
-        var conformidades = document.querySelectorAll('input[type="radio"]')
-
-        conformidades.forEach(function (conformidade) {
-            if (conformidade.checked) {
-                mensagemEscondidaConformidade.style.display = 'none'
-                botao.style.pointerEvents = 'all'
-            } else {
-                mensagemEscondidaConformidade.style.display = 'block'
-                botao.style.pointerEvents = 'none'
-            }
-        });
-    }
-
 
     const sigCanvasRef = useRef(null);
 
@@ -37,10 +49,9 @@ function UTIC() {
         }
     };
 
-
     function handleClickCompareTime() {
         const mensagemEscondida = document.getElementById('mensagemEscondida')
-        const tempoInicio = currentHour
+        const tempoInicio = document.getElementById('timeStart').value
         const tempoFim = document.getElementById('timeEnd').value
         const botao = document.getElementById('botao')
 
@@ -72,7 +83,7 @@ function UTIC() {
         }
     }
 
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }, setValue } = useForm({ resolver: yupResolver(schema) });
 
     const onSubmit = (e) => {
         if (sigCanvasRef.current) {
@@ -136,6 +147,11 @@ function UTIC() {
         }
     };
 
+    function handleSignatureChange() {
+        const signature = sigCanvasRef.current.toDataURL();
+        setValue('assinatura', signature);
+    };
+
 
 
     return (
@@ -182,9 +198,12 @@ function UTIC() {
                 <div className="tempo">
                     <label>Data:</label>
                     <span><strong>{currentDataTime}</strong></span>
-                    <label>Horário de início: <strong>{currentHour}</strong></label>
+                    <label>Horário de início:</label>
+                    <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" />
+                    <span className='error'>{errors?.timeStart?.message}</span>
                     <label>Horário de saída:</label>
-                    <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
+                    <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" name='timeEnd' />
+                    <span className='error'>{errors?.timeEnd?.message}</span>
                 </div>
             </div>
 
@@ -192,179 +211,203 @@ function UTIC() {
 
                 <h2>CENTRAL DE MONITORIZAÇÃO</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
                     <p>VERIFICAR A INTEGRIDADE DO MONITOR DA CENTRAL</p>
                     <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip1_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip1_1?.message}</span>
 
                     <p>VERIFICAR SE TODOS OS LEITOS ESTÃO APARECENDO NO MONITOR NA ORDEM CORRETA</p>
                     <input type="radio" {...register('equip1_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip1_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip1_2?.message}</span>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM  SE HOUVE ALGUMA INCONSISTÊNCIA NO FUNCIONAMENTO DA CENTRAL</p>
                     <input type="radio" {...register('equip1_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip1_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip1_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip1_3?.message}</span>
                 </div>
 
 
                 <h2>MONITOR MULTIPARAMETRO/TRANSPORTE</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE O MONITOR ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip2_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip2_1?.message}</span>
 
                     <p>VERIFICAR SE OS MÓDULOS ESTÃO CONECTADOS DE FORMA CORRETA</p>
                     <input type="radio" {...register('equip2_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip2_2?.message}</span>
 
                     <p>VERIFICAR SE TODOS OS SENSORES CONECTADOS AOS PACIENTES ESTÃO APARECENDO NA TELA COM SEUS RESPECTIVOS GRÁFICOS</p>
                     <input type="radio" {...register('equip2_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip2_3?.message}</span>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM SE EXISTE SENSORES DE OXIMETRIA OU ECG COM DEFEITO</p>
                     <input type="radio" {...register('equip2_4')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_4')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_4')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip2_4?.message}</span>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM SE HOUVE ALGUMA ANORMALIDADE NO FUNCIONAMENTO DO MONITOR</p>
                     <input type="radio" {...register('equip2_5')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip2_5')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip2_5')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip2_5?.message}</span>
                 </div>
 
 
                 <h2>VENTILADOR PULMONAR/TRANSPORTE/BACKUP</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE O VENTILADOR ESTÁ CONECTADO CORRETAMENTE NA REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip3_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip3_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip3_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip3_1?.message}</span>
 
                     <p>VERIFICAR A EXISTÊNCIA DE MANCHAS OU INCONSISTÊNCIAS NO DISPLAY</p>
                     <input type="radio" {...register('equip3_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip3_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip3_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip3_2?.message}</span>
 
                     <p>VERIFICAR SE A TAXA DE O2 PROGRAMADA É COMPÁTIVEL COM A MENSURADA NO DISPLAY</p>
                     <input type="radio" {...register('equip3_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip3_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip3_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip3_3?.message}</span>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE FISIOTERAPIA SE HOUVE ALGUMA ANORMALIDADE NO FUNCIONAMENTO DO VENTILADOR</p>
                     <input type="radio" {...register('equip3_4')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip3_4')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip3_4')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip3_4?.message}</span>
                 </div>
 
                 <h2>CARDIOVERSOR</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE O EQUIPAMENTO ESTÁ CONECTADO A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip4_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip4_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip4_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip4_1?.message}</span>
 
                     <p>VERIFICAR INTEGRIDADE DAS PÁS E CABOS</p>
                     <input type="radio" {...register('equip4_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip4_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip4_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip4_2?.message}</span>
 
                     <p>VERIFICAR INTEGRIDADE DO DISPLAY</p>
                     <input type="radio" {...register('equip4_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip4_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip4_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip4_3?.message}</span>
 
                     <p>REALIZAR TESTE FUNCIONAL DO EQUIPAMENTO</p>
                     <input type="radio" {...register('equip4_4')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip4_4')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip4_4')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip4_4?.message}</span>
                 </div>
 
                 <h2>BERÇO AQUECIDO</h2>
 
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR INTEGRIDADE DA BASE DO EQUIPAMENTO</p>
                     <input type="radio" {...register('equip5_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip5_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip5_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip5_1?.message}</span>
 
                     <p>VERIFICAR INTEGRIDADE DO DISPLAY</p>
                     <input type="radio" {...register('equip5_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip5_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip5_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip5_2?.message}</span>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM SE HOUVE ALGUMA INCONSISTÊNCIA FUNCIONAMENTO DO BERÇO AQUECIDO</p>
                     <input type="radio" {...register('equip5_3')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip5_3')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip5_3')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip5_3?.message}</span>
                 </div>
 
                 <h2>VERIFICAÇÃO DE TAG's E ETIQUETAS DE PREVENTIVA</h2>
-                <div className="equipment-1">
+                <div className="equipment">
 
                     <p>VERIFICAR SE TODOS OS EQUIPAMENTOS ESTÃO COM SUAS RESPECTIVAS TAG's</p>
                     <input type="radio" {...register('equip6_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip6_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip6_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip6_1?.message}</span>
 
                     <p>VERIFICAR SE HÁ ALGUMA ETIQUETA DE PREVENTIVA VENCIDA</p>
                     <input type="radio" {...register('equip6_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip6_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip6_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip6_2?.message}</span>
                 </div>
 
                 <h2>BOMBA DE INFUSÃO E SERINGA</h2>
 
-                <div className="equipment-1" onInput={checkButton}>
+                <div className="equipment">
 
                     <p>VERIFICAR SE A BOMBA ESTÁ CONECTADA A REDE ELÉTRICA</p>
                     <input type="radio" {...register('equip7_1')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip7_1')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip7_1')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip7_1?.message}</span>
 
                     <p>VERIFICAR JUNTAMENTE COM A EQUIPE DE ENFERMAGEM SE HOUVE ALGUMA ANORMALIDADE NO FUNCIONAMENTO DAS BOMBAS</p>
                     <input type="radio" {...register('equip7_2')} value="Conforme" id="conformity" />
                     <label for="">Conforme</label>
-                    <input type="radio" {...register('equip7_2')} value="Inconforme" id="nonconformity" />
+                    <input type="radio" {...register('equip7_2')} value="Inconforme" id="conformity" />
                     <label for="">Não conforme</label>
+                    <span className='error'>{errors?.equip7_2?.message}</span>
                 </div>
 
                 <h2>OBSERVAÇÕES</h2>
                 <textarea {...register('obs')} id="obs" cols="30" rows="10"></textarea>
+                <span className='error'>{errors?.obs?.message}</span>
 
                 <label htmlFor="file">Anexe Arquivo</label>
                 <input type="file" />
@@ -378,10 +421,12 @@ function UTIC() {
                     <SignatureCanvas
                         backgroundColor="lightgray"
                         {...register('assinatura')}
-                        canvasProps={{ height: 200, width: 400, className: 'sigCanvas' }}
+                        canvasProps={{ className: 'sigCanvas' }}
                         ref={sigCanvasRef}
+                        onEnd={handleSignatureChange}
                     />
                 </div>
+                <span className='error'>{errors?.assinatura?.message}</span>
 
                 <button className="botao-reset" onClick={handleClearSignature}>
                     Limpar
@@ -392,7 +437,6 @@ function UTIC() {
             <button id='botao' type='submit'>Enviar</button>
             <h2 id='mensagemEscondida'>Corrija o horário para enviar a inspeção</h2>
             <h2 id='mensagemEscondidaInspetor'>Corrija o inspetor para enviar a inspeção</h2>
-            <h2 id='mensagemEscondidaConformidade'>Marque todos os botões para enviar a inspeção</h2>
         </form >
     )
 }

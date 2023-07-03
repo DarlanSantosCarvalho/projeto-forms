@@ -96,8 +96,6 @@ app.post("/UTIA", (req, res) => {
     const equip10_2 = req.body.equip10_2;
 
 
-
-
     pediatriaA.query("SELECT * FROM utia WHERE data = ?", [dataAtual], (err, result) => {
         if (err) {
             res.send(err);
