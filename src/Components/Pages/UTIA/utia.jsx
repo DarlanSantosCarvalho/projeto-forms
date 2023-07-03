@@ -10,7 +10,8 @@ import { object, string } from "yup";
 
 function UTIA() {
     const schema = object({
-        timeEnd: string().required("Preencha corretamente"),
+        timeStart: string().required("Preencha o campo"),
+        timeEnd: string().required("Preencha o campo"),
         equip1_1: string().required("Preencha uma opção"),
         equip1_2: string().required("Preencha uma opção"),
         equip1_3: string().required("Preencha uma opção"),
@@ -66,7 +67,7 @@ function UTIA() {
 
     function handleClickCompareTime() {
         const mensagemEscondida = document.getElementById('mensagemEscondida')
-        const tempoInicio = currentHour
+        const tempoInicio = document.getElementById('timeStart').value
         const tempoFim = document.getElementById('timeEnd').value
         const botao = document.getElementById('botao')
 
@@ -210,7 +211,8 @@ function UTIA() {
                 <div className="tempo">
                     <label>Data:</label>
                     <span><strong>{currentDataTime}</strong></span>
-                    <label>Horário de início: <strong>{currentHour}</strong></label>
+                    <label>Horário de início:</label>
+                    <input onInput={handleClickCompareTime} type="time"{...register('timeStart')} id="timeStart" />
                     <label>Horário de saída:</label>
                     <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" name='timeEnd' />
                     <span className='error'>{errors?.timeEnd?.message}</span>
