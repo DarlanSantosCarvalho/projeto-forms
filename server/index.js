@@ -6,9 +6,6 @@ const moment = require('moment')
 
 const dataAtual = moment().format('YYYY-MM-DD')
 
-const horaAtual = moment().format('HH:mm')
-
-
 const pediatriaA = mysql.createPool({
     host: "localhost",
     user: "root",
@@ -55,7 +52,7 @@ app.post("/UTIA", (req, res) => {
     const inspetorDois = req.body.tecnicoDois
     const date = dataAtual;
     const setor = req.body.setor;
-    const timeStart = horaAtual;
+    const timeStart = req.body.timeStart;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura;
@@ -124,7 +121,7 @@ app.post("/UTIB", (req, res) => {
     const inspetorDois = req.body.tecnicoDois
     const date = dataAtual;
     const setor = req.body.setor;
-    const timeStart = horaAtual;
+    const timeStart = req.body.timeStart;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura
@@ -195,7 +192,7 @@ app.post("/UTIC", (req, res) => {
     const inspetorDois = req.body.tecnicoDois
     const date = dataAtual;
     const setor = req.body.setor;
-    const timeStart = horaAtual;
+    const timeStart = req.body.timeStart;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura
@@ -253,7 +250,7 @@ app.post("/UTINEO", (req, res) => {
     const inspetorDois = req.body.tecnicoDois
     const date = dataAtual;
     const setor = req.body.setor;
-    const timeStart = horaAtual;
+    const timeStart = req.body.timeStart;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura
@@ -332,7 +329,7 @@ app.post("/CTC", (req, res) => {
     const timeEndCrpa = req.body.timeEndCrpa;
     const date = dataAtual;
     const setor = req.body.setor;
-    const timeStart = horaAtual;
+    const timeStart = req.body.timeStart;
     const timeEnd = req.body.timeEnd;
     const obs = req.body.obs;
     const assinatura = req.body.assinatura;

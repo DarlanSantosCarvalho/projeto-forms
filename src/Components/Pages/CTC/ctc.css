@@ -16,6 +16,14 @@
     margin-bottom: 40px;
 }
 
+.condicional h2{
+    margin-bottom: 15px;
+}
+
+.hidden h2{
+    margin: 20px;
+}
+
 #mensagemEscondida,
 #mensagemEscondidaInspetor{
     margin: 15px;

@@ -97,7 +97,7 @@ function UTIC() {
                 setor: e.setor,
                 date: currentDataTime,
                 assinatura: signatureData.signature,
-                timeStart: currentHour,
+                timeStart: e.timeStart,
                 timeEnd: e.timeEnd,
                 obs: e.obs,
                 equip1_1: e.equip1_1,
@@ -125,16 +125,7 @@ function UTIC() {
                 equip6_4: e.equip6_4,
                 equip6_5: e.equip6_5, //BALANÇA
                 equip7_1: e.equip7_1,
-                equip7_2: e.equip7_2,
-                equip7_3: e.equip7_3,
-                equip7_4: e.equip7_4, //ELETROCARDIÓGRAFO
-                equip8_1: e.equip8_1,
-                equip8_2: e.equip8_2,
-                equip8_3: e.equip8_3, //SALA DE EQUIPAMENTOS
-                equip9_1: e.equip9_1,
-                equip9_2: e.equip9_2, //TAG's E ETIQUETAS
-                equip10_1: e.equip10_1,
-                equip10_2: e.equip10_2 //BOMBA DE INFUSÃO E SERINGA
+                equip7_2: e.equip7_2
             })
                 .then((response) => {
                     console.log(response);
@@ -406,7 +397,7 @@ function UTIC() {
                 </div>
 
                 <h2>OBSERVAÇÕES</h2>
-                <textarea {...register('obs')} id="obs" cols="30" rows="10"></textarea>
+                <textarea {...register('obs')} id="obs" cols="30" rows="10" placeholder='Caso não haja observações, digite "Ok"'></textarea>
                 <span className='error'>{errors?.obs?.message}</span>
 
                 <label htmlFor="file">Anexe Arquivo</label>

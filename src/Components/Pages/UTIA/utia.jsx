@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, createContext } from 'react';
 import { useForm } from "react-hook-form";
 import "./utia.css";
 import "../responsive.css";
@@ -52,8 +52,6 @@ function UTIA() {
     })
 
     const currentDataTime = moment().format('DD/MM/YYYY');
-
-    const currentHour = moment().format('HH:mm');
 
     const sigCanvasRef = useRef();
 
@@ -168,6 +166,10 @@ function UTIA() {
         setValue('assinatura', signature);
     };
 
+    useEffect(() => {
+        handleClickCompareTecnico();
+    }, []);
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className='logo'>
@@ -225,7 +227,6 @@ function UTIA() {
 
             <section className="equipments">
                 <h2>CENTRAL DE MONITORIZAÇÃO</h2>
-
                 <div className="equipment">
                     <p>VERIFICAR A INTEGRIDADE DO MONITOR DA CENTRAL</p>
                     <input type="radio" {...register('equip1_1')} value="Conforme" id="conformity" name='equip1_1' />
