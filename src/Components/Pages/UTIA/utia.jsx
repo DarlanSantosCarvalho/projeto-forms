@@ -104,7 +104,7 @@ function UTIA() {
             const signatureData = { signature: signatureDataURL };
             console.log(e);
             event.preventDefault()
-            Axios.post("http://localhost:3000/UTIA", {
+            Axios.post("http://aws.connect.psdb.cloud:3306/UTIA", {
                 tecnicoUm: e.tecnicoUm,
                 tecnicoDois: e.tecnicoDois,
                 setor: e.setor,
