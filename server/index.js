@@ -7,10 +7,10 @@ const moment = require('moment')
 const dataAtual = moment().format('YYYY-MM-DD')
 
 const pediatriaA = mysql.createPool({
-    host: "localhost",
-    user: "root",
-    password: "Escanor2200@",
-    database: "dados"
+    host: "aws.connect.psdb.cloud",
+    user: "h8rzdyent48p5kjyedku",
+    password: "pscale_pw_C9CNFZSZyhvqgkqgtpRUTyHpIJ4lwZ7ckUcAdzOW8Hs",
+    database: "hmg"
 });
 
 const pediatriaB = mysql.createPool({
