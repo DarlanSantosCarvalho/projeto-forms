@@ -110,7 +110,7 @@ function UTIA() {
                 setor: e.setor,
                 date: currentDataTime,
                 assinatura: signatureData.signature,
-                timeStart: currentHour,
+                timeStart: e.timeStart,
                 timeEnd: e.timeEnd,
                 obs: e.obs,
                 equip1_1: e.equip1_1,

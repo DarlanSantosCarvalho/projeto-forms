@@ -3,13 +3,14 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors")
 const moment = require('moment')
+const password = "pscale_pw_C9CNFZSZyhvqgkqgtpRUTyHpIJ4lwZ7ckUcAdzOW8Hs"
 
 const dataAtual = moment().format('YYYY-MM-DD')
 
 const pediatriaA = mysql.createPool({
     host: "aws.connect.psdb.cloud",
     user: "h8rzdyent48p5kjyedku",
-    password: "pscale_pw_C9CNFZSZyhvqgkqgtpRUTyHpIJ4lwZ7ckUcAdzOW8Hs",
+    password: password,
     database: "hmg"
 });
 
