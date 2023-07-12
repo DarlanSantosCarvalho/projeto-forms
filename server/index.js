@@ -10,11 +10,10 @@ const sslAuth = ssl = { "rejectUnauthorized": true }
 const dataAtual = moment().format('YYYY-MM-DD')
 
 const pediatriaA = mysql.createPool({
-    host: "aws.connect.psdb.cloud",
-    user: "h8rzdyent48p5kjyedku",
-    password: password,
-    database: "hmg",
-    ssl: sslAuth
+    host: "localhost",
+    user: "root",
+    password: "Escanor2200@",
+    database: "dados"
 });
 
 const pediatriaB = mysql.createPool({

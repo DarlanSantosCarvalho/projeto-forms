@@ -65,7 +65,7 @@ function CTC() {
         equip14_1: string().required("Preencha uma opção"),
         equip14_2: string().required("Preencha uma opção"),
         equip14_3: string().required("Preencha uma opção"),
-        obs: string().max(255, "Até 255 caracteres").required("Preencha a observação corretamente"),
+        obs: string().required("Preencha a observação corretamente"),
         assinatura: string().required("Para prosseguir, é necessária a sua assinatura")
     })
 
@@ -120,30 +120,128 @@ function CTC() {
         }
     }
 
-    // function handleClickCompareTimeSala() {
-    //     const botao = document.getElementById('botao')
-    //     const mensagemEscondida = document.getElementById('mensagemEscondida')
-    //     const tempoInicio = currentHour
-    //     const tempoInicioSala1 = document.getElementById('timeStartSala1').value
-    //     const tempoInicioSala2 = document.getElementById('timeStartSala2').value
-    //     const tempoInicioSala3 = document.getElementById('timeStartSala3').value
-    //     const tempoInicioSala4 = document.getElementById('timeStartSala4').value
-    //     const tempoInicioCrpa = document.getElementById('timeStartCrpa').value
+    function handleClickCompareTimeSalaUm() {
+        const botao = document.getElementById('botao')
+        const mensagemEscondida = document.getElementById('mensagemEscondida')
+        const tempoInicio = document.getElementById('timeStart').value
+        const tempoFim = document.getElementById('timeEnd').value
+        const tempoInicioSala1 = document.getElementById('timeStartSala1').value
+        const tempoFimSala1 = document.getElementById("timeEndSala1").value
 
-    //     if (tempoInicioSala1 > tempoInicio &&
-    //         tempoInicioSala2 > tempoInicioSala1 &&
-    //         tempoInicioSala3 > tempoInicioSala2 &&
-    //         tempoInicioSala4 > tempoInicioSala3 &&
-    //         tempoInicioCrpa > tempoInicioSala4) {
-    //         console.log('Correto')
-    //         botao.style.pointerEvents = 'all'
-    //         mensagemEscondida.style.display = 'none'
-    //     } else {
-    //         console.log('Incorreto')
-    //         botao.style.pointerEvents = 'none'
-    //         mensagemEscondida.style.display = 'block'
-    //     }
-    // }
+        if (tempoInicioSala1 > tempoInicio &&
+            tempoFimSala1 < tempoFim &&
+            tempoInicioSala1 != tempoFimSala1) {
+            console.log('Correto')
+            botao.style.pointerEvents = 'all'
+            mensagemEscondida.style.display = 'none'
+        } else {
+            console.log('Incorreto')
+            botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
+        }
+    }
+
+    function handleClickCompareTimeSalaDois() {
+        const botao = document.getElementById('botao')
+        const mensagemEscondida = document.getElementById('mensagemEscondida')
+        const tempoInicio = document.getElementById('timeStart').value
+        const tempoFim = document.getElementById('timeEnd').value
+        const tempoInicioSala1 = document.getElementById('timeStartSala1').value
+        const tempoFimSala1 = document.getElementById("timeEndSala1").value
+        const tempoInicioSala2 = document.getElementById('timeStartSala2').value
+        const tempoFimSala2 = document.getElementById('timeEndSala2').value
+
+        if (tempoInicioSala2 > tempoInicio &&
+            tempoInicioSala2 > tempoInicioSala1 &&
+            tempoInicioSala2 > tempoFimSala1 &&
+            tempoFimSala2 > tempoInicioSala2 &&
+            tempoFimSala2 < tempoFim) {
+            console.log('Correto')
+            botao.style.pointerEvents = 'all'
+            mensagemEscondida.style.display = 'none'
+        } else {
+            console.log('Incorreto')
+            botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
+        }
+    }
+
+    function handleClickCompareTimeSalaTres() {
+        const botao = document.getElementById('botao')
+        const mensagemEscondida = document.getElementById('mensagemEscondida')
+        const tempoInicio = document.getElementById('timeStart').value
+        const tempoFim = document.getElementById('timeEnd').value
+        const tempoInicioSala2 = document.getElementById('timeStartSala2').value
+        const tempoFimSala2 = document.getElementById("timeEndSala2").value
+        const tempoInicioSala3 = document.getElementById('timeStartSala3').value
+        const tempoFimSala3 = document.getElementById('timeEndSala3').value
+
+        if (tempoInicioSala3 > tempoInicio &&
+            tempoInicioSala3 > tempoInicioSala2 &&
+            tempoInicioSala3 > tempoFimSala2 &&
+            tempoFimSala3 > tempoInicioSala3 &&
+            tempoFimSala3 < tempoFim) {
+            console.log('Correto')
+            botao.style.pointerEvents = 'all'
+            mensagemEscondida.style.display = 'none'
+        } else {
+            console.log('Incorreto')
+            botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
+        }
+    }
+
+
+    function handleClickCompareTimeSalaQuatro() {
+        const botao = document.getElementById('botao')
+        const mensagemEscondida = document.getElementById('mensagemEscondida')
+        const tempoInicio = document.getElementById('timeStart').value
+        const tempoFim = document.getElementById('timeEnd').value
+        const tempoInicioSala3 = document.getElementById('timeStartSala3').value
+        const tempoFimSala3 = document.getElementById("timeEndSala3").value
+        const tempoInicioSala4 = document.getElementById('timeStartSala4').value
+        const tempoFimSala4 = document.getElementById('timeEndSala4').value
+
+        if (tempoInicioSala4 > tempoInicio &&
+            tempoInicioSala4 > tempoInicioSala3 &&
+            tempoInicioSala4 > tempoFimSala3 &&
+            tempoFimSala4 > tempoInicioSala3 &&
+            tempoFimSala4 < tempoFim) {
+            console.log('Correto')
+            botao.style.pointerEvents = 'all'
+            mensagemEscondida.style.display = 'none'
+        } else {
+            console.log('Incorreto')
+            botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
+        }
+    }
+
+    function handleClickCompareTimeCrpa() {
+        const botao = document.getElementById('botao')
+        const mensagemEscondida = document.getElementById('mensagemEscondida')
+        const tempoInicio = document.getElementById('timeStart').value
+        const tempoFim = document.getElementById('timeEnd').value
+        const tempoInicioSala4 = document.getElementById('timeStartSala4').value
+        const tempoFimSala4 = document.getElementById("timeEndSala4").value
+        const tempoInicioCrpa = document.getElementById('timeStartCrpa').value
+        const tempoFimCrpa = document.getElementById('timeEndCrpa').value
+
+        if (tempoInicioCrpa > tempoInicio &&
+            tempoInicioCrpa > tempoInicioSala4 &&
+            tempoInicioCrpa > tempoFimSala4 &&
+            tempoFimCrpa > tempoInicioCrpa &&
+            tempoFimCrpa < tempoFim) {
+            console.log('Correto')
+            botao.style.pointerEvents = 'all'
+            mensagemEscondida.style.display = 'none'
+        } else {
+            console.log('Incorreto')
+            botao.style.pointerEvents = 'none'
+            mensagemEscondida.style.display = 'block'
+        }
+    }
+
 
     function handleClickCompareTecnico() {
         const mensagemEscondida = document.getElementById('mensagemEscondidaInspetor')
@@ -275,6 +373,10 @@ function CTC() {
     };
 
 
+    useEffect(() => {
+        handleClickCompareTecnico();
+    }, []);
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
 
@@ -328,48 +430,49 @@ function CTC() {
                     <label>Horário de saída:</label>
                     <input onInput={handleClickCompareTime} type="time" {...register('timeEnd')} id="timeEnd" />
                     <span className='error'>{errors?.timeEnd?.message}</span>
+                    <span id="erro">Corrija os horários.</span>
                 </div>
 
                 <div className="salas">
                     <div className='salas'>
                         <h3>Sala 1</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartSala1')} id="timeStartSala1" /> <br />
+                        <input onInput={handleClickCompareTimeSalaUm} type="time"{...register('timeStartSala1')} id="timeStartSala1" /> <br />
                         <label>Horário de saída:</label>
-                        <input type="time" {...register('timeEndSala1')} id="timeEndSala1" />
+                        <input onInput={handleClickCompareTimeSalaUm} type="time" {...register('timeEndSala1')} id="timeEndSala1" />
                     </div>
 
                     <div className='salas'>
                         <h3>Sala 2</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartSala2')} id="timeStartSala2" /> <br />
+                        <input onInput={handleClickCompareTimeSalaDois} type="time"{...register('timeStartSala2')} id="timeStartSala2" /> <br />
                         <label>Horário de saída:</label>
-                        <input type="time" {...register('timeEndSala2')} id="timeEndSala2" />
+                        <input onInput={handleClickCompareTimeSalaDois} type="time" {...register('timeEndSala2')} id="timeEndSala2" />
                     </div>
 
 
                     <div className='salas'>
                         <h3>Sala 3</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartSala3')} id="timeStartSala3" /> <br />
+                        <input onInput={handleClickCompareTimeSalaTres} type="time"{...register('timeStartSala3')} id="timeStartSala3" /> <br />
                         <label>Horário de saída:</label>
-                        <input type="time" {...register('timeEndSala3')} id="timeEndSala3" />
+                        <input onInput={handleClickCompareTimeSalaTres} type="time" {...register('timeEndSala3')} id="timeEndSala3" />
                     </div>
 
                     <div className='salas'>
                         <h3>Sala 4</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartSala4')} id="timeStartSala4" /> <br />
+                        <input onInput={handleClickCompareTimeSalaQuatro} type="time"{...register('timeStartSala4')} id="timeStartSala4" /> <br />
                         <label>Horário de saída:</label>
-                        <input type="time" {...register('timeEndSala4')} id="timeEndSala4" />
+                        <input onInput={handleClickCompareTimeSalaQuatro} type="time" {...register('timeEndSala4')} id="timeEndSala4" />
                     </div>
 
                     <div className='salas'>
                         <h3>CRPA</h3>
                         <label>Horário de início:</label>
-                        <input type="time"{...register('timeStartCrpa')} id="timeStartCrpa" /> <br />
+                        <input onInput={handleClickCompareTimeCrpa} type="time"{...register('timeStartCrpa')} id="timeStartCrpa" /> <br />
                         <label>Horário de saída:</label>
-                        <input type="time" {...register('timeEndCrpa')} id="timeEndCrpa" />
+                        <input onInput={handleClickCompareTimeCrpa} type="time" {...register('timeEndCrpa')} id="timeEndCrpa" />
                     </div>
                 </div>
 

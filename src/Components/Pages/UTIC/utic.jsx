@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useForm } from "react-hook-form"
 import "./utic.css"
 import "../responsive.css";
@@ -143,6 +143,10 @@ function UTIC() {
         setValue('assinatura', signature);
     };
 
+
+    useEffect(() => {
+        handleClickCompareTecnico();
+    }, []);
 
 
     return (

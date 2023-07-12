@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import "./utib.css";
 import "../responsive.css";
@@ -7,12 +7,12 @@ import SignatureCanvas from "react-signature-canvas";
 import moment from "moment";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { object, string } from "yup";
- 
-function UTIB() {  
+
+function UTIB() {
     const schema = object({
         timeStart: string().required("Preencha o campo"),
         timeEnd: string().required("Preencha o campo"),
-        equip1_1: string().required("Preencha uma opção"), 
+        equip1_1: string().required("Preencha uma opção"),
         equip1_2: string().required("Preencha uma opção"),
         equip1_3: string().required("Preencha uma opção"),
         equip2_1: string().required("Preencha uma opção"),
@@ -167,6 +167,10 @@ function UTIB() {
         const signature = sigCanvasRef.current.toDataURL();
         setValue('assinatura', signature);
     };
+
+    useEffect(() => {
+        handleClickCompareTecnico();
+    }, []);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>

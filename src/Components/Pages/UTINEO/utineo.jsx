@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useForm } from "react-hook-form"
 import "./utineo.css"
 import Axios from "axios"
@@ -165,6 +165,11 @@ function UTINEO() {
         const signature = sigCanvasRef.current.toDataURL();
         setValue('assinatura', signature);
     };
+
+
+    useEffect(() => {
+        handleClickCompareTecnico();
+    }, []);
 
 
     return (
